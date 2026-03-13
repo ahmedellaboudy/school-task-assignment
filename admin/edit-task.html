@@ -7,8 +7,30 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
+    <style>
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 16px;
+      }
+    </style>
   </head>
   <body>
+    <header>
+      <nav>
+        <h2>School Task System</h2>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../login.html">Login</a></li>
+          <li><a href="../signup.html">Sign Up</a></li>
+          <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          <li>
+            <a href="../teacher/teacher-dashboard.html">Teacher Dashboard</a>
+          </li>
+          <li><a href="../login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
     <header>
       <a href="admin-tasks.html"
         ><i class="fas fa-arrow-left"></i> Back To Dashboard</a
@@ -30,9 +52,24 @@
           type="text"
           id="taskId"
           name="taskId"
-          value="TASK-101"
+          placeholder="Ex: TASK-101"
+          pattern="TASK-[0-9]+"
           readonly
-          title="Task ID cannot be changed"
+          title="Task ID cannot be changed during edit"
+        />
+        <br /><br />
+
+        <label for="createdBy"
+          ><i class="fas fa-user-shield"></i> Created By (Admin):</label
+        >
+        <input
+          type="text"
+          id="createdBy"
+          name="createdBy"
+          placeholder="Enter Admin Name"
+          pattern="[A-Za-z\s]+"
+          title="Name should only contain letters"
+          required
         />
         <br /><br />
 
@@ -41,7 +78,7 @@
         >
         <select id="priority" name="taskPriority" required>
           <option value="">-- Choose Priority --</option>
-          <option value="high" selected>High</option>
+          <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
@@ -58,9 +95,20 @@
           id="title"
           name="taskTitle"
           minlength="5"
-          maxlength="50"
+          maxlength="100"
           placeholder="Enter a clear title"
-          value="Final Exam Review"
+          title="Title must be between 5 and 100 characters"
+          required
+        />
+
+        <br /><br />
+
+        <label for="subject"><i class="fas fa-book"></i> Subject/Course:</label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Ex: Mathematics or Science"
           required
         />
 
@@ -69,13 +117,7 @@
         <label for="deadline"
           ><i class="fas fa-calendar-days"></i> Due Date:</label
         >
-        <input
-          type="date"
-          id="deadline"
-          name="deadlineDate"
-          value="2026-03-14"
-          required
-        />
+        <input type="date" id="deadline" name="deadlineDate" required />
 
         <br /><br />
 
@@ -85,7 +127,8 @@
           id="teacher"
           name="teacherName"
           placeholder="Enter teacher's name"
-          value="Dr. Ahmed Ali"
+          pattern="[A-Za-z\s]+"
+          title="Teacher name must contain only letters and spaces"
           required
         />
 
@@ -100,11 +143,10 @@
           name="taskDescription"
           rows="4"
           cols="40"
-          placeholder="Write instructions here"
+          placeholder="Write instructions here (min 10 characters)"
+          minlength="10"
           required
-        >
-Here is the task</textarea
-        >
+        ></textarea>
       </fieldset>
 
       <br />
