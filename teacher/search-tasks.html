@@ -3,9 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Tasks</title>
+    <title>Filtered Tasks</title>
+    <style>
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 16px;
+        }
+    </style>
 </head>
 <body>
-    
+
+<header>
+    <nav>
+        <h2>School Task System</h2>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../login.html">Login</a></li>
+            <li><a href="../signup.html">Sign Up</a></li>
+            <li><a href="../admin/admin-dashboard.html">Admin Dashboard</a></li>
+            <li><a href="../teacher/teacher-dashboard.html">Teacher Dashboard</a></li>
+            <li><a href="../login.html">Logout</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <div>
+            <h1>Showing Tasks: [ ----- ] Priority</h1>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <div>
+                <span>ID: T-000</span>
+                <strong>Priority: -----</strong>
+            </div>
+            <hr>
+            <div>
+                <h3>Task Title: -----</h3>
+                <p>Task Description: ----- </p>
+            </div>
+            <div>
+                <p><strong>From:</strong> Admin</p>
+                <a href="../teacher/task-details.html">View Details</a>
+                <button type="button">Complete</button>
+            </div>
+        </div>
+    </section>
+</main>
+
 </body>
 </html>
