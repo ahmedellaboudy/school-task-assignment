@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+</head>
+<body>
+
+ 
+    <header>
+        <nav>
+            <style>
+                nav ul {
+                    list-style: none;
+                    display: flex;
+                    gap: 16px;
+                }
+            </style>
+             
+            <header>
+                <nav>
+                    <h2>School Task System</h2>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="admin/admin-dashboard.html">Admin Dashboard</a></li>
+                        <li><a href="teacher/teacher-dashboard.html">Teacher Dashboard</a></li>
+                        <li><a href="index.html">Logout</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+   
+    <h1>Manage school tasks with clarity and precision</h1>
+    <p>A simple platform for teachers and admins to manage school tasks efficiently</p>
+
+    
+    <form>
+       
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username" placeholder="Enter username" required><br><br>
+
+        
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" placeholder="Enter password" required><br><br>
+
+        
+        <label>Select Role</label><br>
+        <input type="radio" id="teacher" name="role" value="teacher" required>
+        <label for="teacher">Teacher</label><br>
+        <input type="radio" id="admin" name="role" value="admin" required>
+        <label for="admin">Admin</label><br><br>
+
+        
+        <button type="submit">Login</button>
+    </form>
+
+</body>
+</html>
