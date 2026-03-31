@@ -1,12 +1,18 @@
-<style>
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 16px;
-      }
-    </style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Dashboard - Tasks</title>
+    <link rel="stylesheet" href="../css/add-and-edit-Task.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
     <header>
-      <nav>
+      <nav class="ignoreNav">
         <h2>School Task System</h2>
         <ul>
           <li><a href="../index.html">Home</a></li>
@@ -20,82 +26,57 @@
         </ul>
       </nav>
     </header>
-<main>
-  
-  <header>
-    <div>
-      <h1>My Created Tasks</h1>
-      <p>Manage tasks you have assigned to teachers.</p>
-    </div>
-    
-    <div>
-      <a href="add-task.html" >Create New Task</a>
-    </div>
-  </header>
 
-  <section>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Task Title</th>
-          <th>Tasks</th>
-          <th>Assigned To</th>
-          <th>Date</th>
-          <th>Priority</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr>
-          <td>Task ID</td>
+    <main class="mainContainer dashboardContainer">
+      <header class="dashboardHeader">
+        <div class="headerText">
+          <h1 class="pageTitle">My Created Tasks</h1>
+          <p class="subtitle">Manage tasks you have assigned to teachers.</p>
+        </div>
 
-          <td>---The Task---</td>
+        <div>
+          <a href="add-task.html" class="btnSubmit createBtn"
+            >Create New Task</a
+          >
+        </div>
+      </header>
 
-          <td>---Task Description---</td>
+      <section class="tableContainer">
+        <table class="tasksTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Task Title</th>
+              <th>Description</th>
+              <th>Assigned To</th>
+              <th>Date</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-          
-          <td>---teacher Name---</td>
+          <tbody id="tasksTableBody">
+            <tr>
+              <td>Task ID</td>
+              <td>---The Task---</td>
+              <td>---Task Description---</td>
+              <td>---Teacher Name---</td>
+              <td>---0/0/0000---</td>
+              <td><span>---Priority---</span></td>
+              <td><span>---Status---</span></td>
+              <td>
+                <a href="edit-task.html" class="actionBtn editBtn">Edit</a>
+                <button type="button" >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
 
-          <td>---0/0/0000---</td>
-          <td>
-            <span>---Priority level---</span>
-          </td>
-          <td>
-            <span>---status---</span>
-          </td>
-          <td>
-            <a href="edit-task.html" >Edit</a>
-            <button type="button">Delete</button>
-          </td>
-        </tr>
-
-        <tr>
-           <td>Task ID</td>
-
-          <td>---The Task---</td>
-
-          <td>---Task Description---</td>
-
-          
-          <td>---teacher Name---</td>
-
-          <td>---0/0/0000---</td>
-          <td>
-            <span>---Priority level---</span>
-          </td>
-          <td>
-            <span>---status---</span>
-          </td>
-          <td>
-            <a href="edit-task.html" >Edit</a>
-            <button type="button">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-</main>
+    <script src="../js/add-edit-Task.js"></script>
+  </body>
+</html>
