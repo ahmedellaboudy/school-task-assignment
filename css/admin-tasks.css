@@ -1,4 +1,4 @@
-/* تنسيقات خاصة بصفحة لوحة تحكم الأدمن */
+
 
 .adminHeader {
     display: flex;
@@ -7,14 +7,12 @@
     margin-bottom: 30px;
 }
 
-/* حاوية الأزرار في الهيدر */
 .headerActions {
     display: flex;
     gap: 12px;
     align-items: center;
 }
 
-/* تنسيق زرار البحث اللي جنب Create Task */
 .searchLinkBtn {
     border: 1px solid var(--primary-blue);
     padding: 10px 20px;
@@ -33,12 +31,10 @@
     color: var(--white);
 }
 
-/* تنسيق إضافي لجدول الأدمن لو محتاج */
 .tasksTable td .actionGroup {
     justify-content: center;
 }
 
-/* Responsive للأدمن */
 @media (max-width: 992px) {
     .adminHeader {
         flex-direction: column;
