@@ -1,0 +1,119 @@
+/* ── ADMIN DASHBOARD PAGE STYLES ── */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f2f5;
+  color: #1f2c56;
+}
+
+/* ── WELCOME BANNER ── */
+.welcome-banner {
+  background-color: #1f2c56;
+  margin: 30px 60px;
+  border-radius: 10px;
+  padding: 32px 40px;
+}
+
+.welcome-banner h1 {
+  color: white;
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+/* ── DASHBOARD CARDS GRID ── */
+.dashboard-grid {
+  display: flex;
+  gap: 30px;
+  padding: 10px 60px 60px 60px;
+  flex-wrap: wrap;
+}
+
+/* ── DASHBOARD CARD ── */
+.dashboard-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 40px 36px;
+  flex: 1;
+  min-width: 280px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.11);
+}
+
+/* ── CARD HEADER (icon + title) ── */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.card-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background-color: #fdf5dc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-icon-wrapper i {
+  font-size: 26px;
+  color: #d4af37;
+}
+
+.card-header h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1f2c56;
+}
+
+/* ── CARD DESCRIPTION ── */
+.card-desc {
+  font-size: 0.95rem;
+  color: #6b7a99;
+  line-height: 1.65;
+}
+
+/* ── CARD LINK ── */
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #d4af37;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-top: auto;
+  transition: gap 0.2s;
+}
+
+.card-link:hover {
+  gap: 10px;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid #dde1ea;
+  text-align: center;
+  padding: 24px 20px;
+  color: #6b7a99;
+  font-size: 0.9rem;
+  background-color: #f0f2f5;
+}
