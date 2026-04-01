@@ -1,87 +1,110 @@
-var path = window.location.pathname;
-var inSubfolder = path.includes('/admin/') || path.includes('/teacher/');
-var root = inSubfolder ? '../' : '';
+document.addEventListener('DOMContentLoaded', function () {
+    const testUser = {
+        username: "Abdelaziz", 
+        isAdmin: false, 
+        role: "teacher"  
+    };
 
-var user = JSON.parse(localStorage.getItem('user'));
-
-var userDropdown = user
-  ? `<li class="user-menu">
-       <button class="user-btn" id="user-toggle">
-         <i class="fa-solid fa-user"></i> ${user.username}
-         <i class="fa-solid fa-chevron-down chevron"></i>
-       </button>
-       <ul class="user-dropdown">
-         <li><a href="#" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-       </ul>
-     </li>`
-  : `<li class="user-menu">
-       <button class="user-btn" id="user-toggle">
-         <i class="fa-solid fa-user"></i> User
-         <i class="fa-solid fa-chevron-down chevron"></i>
-       </button>
-       <ul class="user-dropdown">
-         <li><a href="${root}login.html"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
-       </ul>
-     </li>`;
-
-var adminLinks = user && user.role === 'admin'
-  ? `<li><a href="${root}admin/admin-dashboard.html">Dashboard</a></li>
-     <li><a href="${root}admin/admin-tasks.html">My Tasks</a></li>
-     <li><a href="${root}admin/add-task.html">Add Task</a></li>`
-  : '';
-
-var teacherLinks = user && user.role === 'teacher'
-  ? `<li><a href="${root}teacher/teacher-dashboard.html">Dashboard</a></li>
-     <li><a href="${root}teacher/teacher-tasks.html">My Tasks</a></li>
-     <li><a href="${root}teacher/completed-tasks.html">Completed</a></li>
-     <li><a href="${root}teacher/search-tasks.html">Search</a></li>`
-  : '';
-
-var navbarHTML = `
-  <header class="header">
-    <nav class="nav">
-      <div class="logo">
-        <i class="fa-solid fa-graduation-cap logo-icon"></i>
-        <h2 class="logo-text">SchoolTask</h2>
-      </div>
-      <ul class="nav-links">
-        <li><a href="${root}index.html">Home</a></li>
-        ${adminLinks}
-        ${teacherLinks}
-        ${userDropdown}
-      </ul>
-    </nav>
-  </header>
-`;
-
-document.body.insertAdjacentHTML('afterbegin', navbarHTML);
-
-var currentPage = window.location.pathname.split('/').pop();
-document.querySelectorAll('.nav-links a').forEach(function(link) {
-  if (link.getAttribute('href').includes(currentPage)) {
-    link.classList.add('active');
-  }
+    
+    if (!localStorage.getItem('currentUser')) {
+        localStorage.setItem('currentUser', JSON.stringify(testUser));
+    }
+    renderNavbar();
 });
 
-var toggleBtn = document.getElementById('user-toggle');
-var dropdown = document.querySelector('.user-dropdown');
+function renderNavbar() {
+    const navbarPlaceholder = document.getElementById('navbar-placeholder');
+    if (!navbarPlaceholder) return;
 
-toggleBtn.addEventListener('click', function(e) {
-  e.stopPropagation();
-  dropdown.classList.toggle('open');
-  toggleBtn.querySelector('.chevron').classList.toggle('rotated');
-});
+    const currentUserInfo = localStorage.getItem('currentUser');
+    const user = currentUserInfo ? JSON.parse(currentUserInfo) : null;
 
-document.addEventListener('click', function() {
-  dropdown.classList.remove('open');
-  toggleBtn.querySelector('.chevron').classList.remove('rotated');
-});
+    let navLinksHTML = '';
+    let dropdownHTML = '';
 
-var logoutBtn = document.getElementById('logout-btn');
-if (logoutBtn) {
-  logoutBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    localStorage.removeItem('user');
-    window.location.href = root + 'index.html';
-  });
+    if (!user) {
+        dropdownHTML = `
+            <a href="../login.html"><i class="fa-solid fa-right-to-bracket"></i> Sign In</a>
+            <a href="../signup.html"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+        `;
+    } 
+    else if (user.isAdmin === true || user.role === 'admin') {
+        navLinksHTML = `
+            <li><a href="../admin/admin-tasks.html">Admin Tasks</a></li>
+            <li><a href="../admin/add-task.html">Add Task</a></li>
+            <li><a href="../admin/admin-search.html">Search</a></li>
+        `;
+        dropdownHTML = `
+            <a href="#" id="logoutAction"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+        `;
+    } 
+    else {
+        navLinksHTML = `
+            <li><a href="../teacher/teacher-tasks.html">My Tasks</a></li>
+            <li><a href="../teacher/completed-tasks.html">Completed</a></li>
+        `;
+        dropdownHTML = `
+            <a href="#" id="logoutAction"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>
+        `;
+    }
+
+    const finalNavHTML = `
+        <header class="mainHeader">
+            <nav class="ignoreNav">
+                <a href="../index.html" class="brandLogo" style="text-decoration: none;">
+                    <i class="fa-solid fa-graduation-cap"></i> SchoolTask
+                </a>
+                
+                <div class="navRightSide">
+                    <ul class="navLinks">
+                        ${navLinksHTML}
+                    </ul>
+
+                    <div class="dropdownContainer">
+                        <button class="userDropdownBtn" id="userMenuBtn">
+                            <i class="fa-solid fa-user"></i> 
+                            ${user ? user.username || 'User' : 'Account'} 
+                            <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+                        </button>
+                        <div class="dropdownMenu" id="userDropdownMenu">
+                            ${dropdownHTML}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    `;
+
+    navbarPlaceholder.innerHTML = finalNavHTML;
+
+    setupNavbarInteractions();
+}
+
+function setupNavbarInteractions() {
+    const menuBtn = document.getElementById('userMenuBtn');
+    const dropdownMenu = document.getElementById('userDropdownMenu');
+
+    if (menuBtn && dropdownMenu) {
+        menuBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); 
+            dropdownMenu.classList.toggle('show');
+        });
+
+     
+        document.addEventListener('click', function(e) {
+            if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    }
+
+    
+    const logoutAction = document.getElementById('logoutAction');
+    if (logoutAction) {
+        logoutAction.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('currentUser'); 
+            window.location.href = '../login.html'; 
+        });
+    }
 }
