@@ -1,0 +1,48 @@
+.completedRow td:first-child {
+    border-left: 4px solid #22c55e;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.filterGroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filterLabel {
+    color: #94a3b8;
+    font-size: 14px;
+    margin: 0;
+}
+
+.filterSelect {
+    padding: 8px 15px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    font-family: inherit;
+    color: #1e293b;
+}
+
+.filterSelect:focus {
+    border-color: #1a2a47;
+}
+
+.completedHeader {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-end;
+}
+
+.completedTitle {
+    display: flex; 
+    align-items: center; 
+    gap: 10px;
+}
+
+.completedIcon {
+    color: #22c55e; 
+    font-size: 35px; 
+    border-radius: 4px;
+}

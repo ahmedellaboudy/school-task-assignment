@@ -1,0 +1,273 @@
+/* Root Variables & Reset */
+:root {
+  --primary-blue: #16243d;
+  --accent-gold: #dcb45e;
+  --bg-color: #f8f9fa;
+  --white: #ffffff;
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --border-color: #e2e8f0;
+
+  --priority-high: #ef4444;
+  --priority-medium: #f59e0b;
+  --priority-low: #22c55e;
+
+  --status-pending: #94a3b8;
+  --status-progress: #f59e0b;
+  --status-completed: #22c55e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+}
+
+/*  Navbar */
+.mainHeader {
+  background-color: var(--primary-blue);
+  padding: 0 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ignoreNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.brandLogo {
+  color: var(--white);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brandLogo i {
+  color: var(--accent-gold);
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  height: 100%;
+  align-items: center;
+}
+
+
+.navLinks a {
+  text-decoration: none;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: var(--accent-gold);
+}
+
+.activeLink {
+  color: var(--accent-gold) !important;
+}
+
+/* Main Layout & Dashboard Headers */
+.dashboardContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.dashboardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.pageTitle {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 32px;
+  color: var(--primary-blue);
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.subtitle {
+  color: var(--text-gray);
+  font-size: 14px;
+}
+
+/*  Tables  */
+.tableContainer {
+  background-color: var(--white);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.tasksTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tasksTable th {
+  padding: 16px 12px;
+  color: var(--text-dark);
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tasksTable td {
+  padding: 20px 12px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.tasksTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.tasksTable tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.taskID { font-weight: bold; color: var(--text-dark); }
+.taskTitleText { color: var(--text-dark); font-weight: 500; }
+.taskDesc { color: var(--text-gray); line-height: 1.5; max-width: 250px; }
+.teacherName, .dueDate { color: var(--text-dark); }
+.centered { text-align: center !important; }
+
+/* Badges & Statuses*/
+.priorityBadge, .statusBadge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.highPriority { background-color: var(--priority-high); color: var(--white); }
+.mediumPriority { background-color: var(--priority-medium); color: var(--white); }
+.lowPriority { background-color: var(--priority-low); color: var(--white); }
+
+.statusPending { border: 1px solid var(--status-pending); color: var(--status-pending); background-color: transparent; }
+.statusInProgress { border: 1px solid var(--status-progress); color: var(--status-progress); background-color: #fffbeb; }
+.statusCompleted { border: 1px solid var(--status-completed); color: var(--status-completed); background-color: #f0fdf4; }
+
+/*  Buttons*/
+.createBtn {
+  background-color: var(--accent-gold);
+  color: var(--primary-blue);
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.createBtn:hover { background-color: #cba04d; }
+
+.actionGroup { display: flex; gap: 12px; align-items: center; justify-content: center; }
+.actionBtn {
+  display: flex; align-items: center; gap: 6px;
+  background: none; border: none; font-size: 13px;
+  font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+}
+.actionBtn:hover { opacity: 0.7; }
+.editBtn { color: var(--text-dark); }
+
+.deleteBtn {
+  color: var(--priority-high); border: 1px solid var(--priority-high);
+  padding: 6px 12px; border-radius: 6px; background-color: transparent;
+}
+.deleteBtn:hover { background-color: #fef2f2; opacity: 1; }
+
+
+
+/*NavBar Style*/
+.navRightSide {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+
+.userDropdownBtn {
+  background: transparent;
+  border: 2px solid var(--accent-gold); 
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 25px; 
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.userDropdownBtn:hover {
+  background-color: rgba(220, 180, 94, 0.1);
+}
+
+
+.dropdownContainer {
+  position: relative;
+}
+
+.dropdownMenu {
+  display: none; 
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: var(--white);
+  min-width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.dropdownMenu.show {
+  display: block;
+}
+
+.dropdownMenu a {
+  display: block;
+  padding: 12px 15px;
+  color: var(--text-dark);
+  text-decoration: none;
+  font-size: 14px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+
+.dropdownMenu a:last-child {
+  border-bottom: none;
+}
+
+.dropdownMenu a:hover {
+  background-color: var(--bg-color);
+  color: var(--primary-blue);
+}
