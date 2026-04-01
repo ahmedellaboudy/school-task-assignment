@@ -1,107 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>completed tasks</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Tasks | SchoolTask</title>
 
-  <style>
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 16px;
-      }
-    </style>
+  <link rel="stylesheet" href="../css/global.css" />
+  <link rel="stylesheet" href="../css/teacher-tasks.css" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
+
 <body>
-    <header>
-      <nav>
-        <h2>School Task System</h2>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../login.html">Login</a></li>
-          <li><a href="../signup.html">Sign Up</a></li>
-          <li><a href="../admin/admin-dashboard.html">Admin Dashboard</a></li>
-          <li>
-            <a href="../teacher/teacher-dashboard.html">Teacher Dashboard</a>
-          </li>
-          <li><a href="../login.html">Logout</a></li>
-        </ul>
-      </nav>
+
+  <div id="navbar-placeholder"></div>
+  <main class="mainContainer dashboardContainer">
+    <header class="dashboardHeader teacherHeader">
+      <div class="headerText">
+        <h1 class="pageTitle">My Assigned Tasks</h1>
+        <p class="subtitle">View and manage tasks assigned to you.</p>
+      </div>
+
+      <div class="filterGroup">
+        <select name="priority-filter" id="priority-filter" class="filterSelect">
+          <option value="all">All Priorities</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+      </div>
     </header>
-    <main>
-  
-  <section>
-    <div>
-      <h1>My Assigned Tasks</h1>
-      <p>View and manage tasks assigned to you.</p>
-    </div>
-    
-    <div>
-      <select name="priority-filter" id="priority-filter">
-        <option value="all">All Priorities</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </select>
-    </div>
-  </section>
 
-  <section>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Task</th>
-          <th>From</th>
-          <th>Priority</th>
-          <th>Status</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr>
-          <td>
-            <span>Task ID</span>
-          </td>
-          
-          <td>
-            <strong>-----subject Name-----</strong>
-          </td>
+    <section class="tableContainer">
+      <table class="tasksTable">
+        <thead>
+          <tr>
+            <th class="centered">ID</th>
+            <th>Title</th>
+            <th>Task Details</th>
+            <th>From</th>
+            <th class="centered">Priority</th>
+            <th class="centered">Status</th>
+            <th class="centered">Actions</th>
+          </tr>
+        </thead>
 
-          <td>
-            -----the task-----
-          </td>
-          
-          <td>
-            -----admin-----
-          </td>
-          
-          <td>
-            <span>-----Priority level-----</span>
-          </td>
-          
-          <td>
-            <span>-----status------</span>
-          </td>
-          
-          <td>
-            <div>
-             <a href="task-details.html" >-----View Details-----</a>
-            <a href="completed-tasks.html" >complete-----</a>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-</main>
+        <tbody id="teacherTasksBody">
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <script src="../js/navbar.js"></script>
+  <script src="../js/teacher-tasks.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Tasks | SchoolTask Admin</title>
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/admin-search.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+
+
+    <div id="navbar-placeholder"></div>
+    <main class="mainContainer dashboardContainer">
+        <a href="admin-dashboard.html" class="backToDash">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+        </a>
+
+        <header class="dashboardHeader searchPageHeader">
+            <div class="headerText">
+                <h1 class="pageTitle">Search All Tasks</h1>
+                <p class="subtitle">Find tasks quickly by ID, Title, or Teacher Name.</p>
+            </div>
+
+            <div class="searchArea">
+                <input type="text" id="searchKeyword" class="searchInputField"
+                    placeholder="e.g., TSK-001, Math Exam, Mr. Ahmed...">
+                <button type="button" class="createBtn" id="searchBtn">
+                    <i class="fa-solid fa-search"></i> Search
+                </button>
+            </div>
+        </header>
+
+        <section class="tableContainer">
+            <table class="tasksTable">
+                <thead>
+                    <tr>
+                        <th class="centered">ID</th>
+                        <th>Title</th>
+                        <th>Assigned To</th>
+                        <th>Due Date</th>
+                        <th class="centered">Priority</th>
+                        <th class="centered">Status</th>
+                        <th class="centered">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="searchResultsBody">
+                    <tr>
+                        <td colspan="7" class="searchPlaceholder">
+                            <i class="fa-solid fa-magnifying-glass magnifyingIcon"></i>
+                            Type a keyword above and click Search to find tasks.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="../js/navbar.js"></script>
+    <script src="../js/admin-search.js"></script>
+</body>
+
+</html>
