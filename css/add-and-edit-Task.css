@@ -1,4 +1,3 @@
-/* تنسيقات صفحة إضافة وتعديل المهام */
 
 .mainContainer {
     display: flex;
@@ -16,7 +15,7 @@
 }
 
 .backLink {
-    color: var(--accent-gold); /* استخدمنا المتغير من الجلوبال */
+    color: var(--accent-gold);
     text-decoration: none;
     font-size: 20px;
     display: flex;
@@ -114,7 +113,6 @@ input[readonly] {
     cursor: not-allowed;
 }
 
-/* التعديلات الخاصة بالموبايل */
 @media (max-width: 768px) {
     .mainContainer { margin: 20px auto; }
     .pageTitle { font-size: 26px; }
