@@ -89,3 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
   console.log('Admin Dashboard Loaded Successfully.');
   displayTasks(); 
 });
+
+const userData = localStorage.getItem('currentUser');
+
+if (userData) {
+    const user = JSON.parse(userData);
+    document.getElementById('user-name').textContent = user.username;
+}

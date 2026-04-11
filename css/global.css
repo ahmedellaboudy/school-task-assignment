@@ -21,10 +21,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   background-color: var(--bg-color);
   color: var(--text-dark);
 }
@@ -97,7 +98,7 @@ body {
 }
 
 .pageTitle {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-size: 32px;
   color: var(--primary-blue);
   margin-bottom: 5px;
@@ -147,14 +148,30 @@ body {
   background-color: #f8fafc;
 }
 
-.taskID { font-weight: bold; color: var(--text-dark); }
-.taskTitleText { color: var(--text-dark); font-weight: 500; }
-.taskDesc { color: var(--text-gray); line-height: 1.5; max-width: 250px; }
-.teacherName, .dueDate { color: var(--text-dark); }
-.centered { text-align: center !important; }
+.taskID {
+  font-weight: bold;
+  color: var(--text-dark);
+}
+.taskTitleText {
+  color: var(--text-dark);
+  font-weight: 500;
+}
+.taskDesc {
+  color: var(--text-gray);
+  line-height: 1.5;
+  max-width: 250px;
+}
+.teacherName,
+.dueDate {
+  color: var(--text-dark);
+}
+.centered {
+  text-align: center !important;
+}
 
 /* Badges & Statuses */
-.priorityBadge, .statusBadge {
+.priorityBadge,
+.statusBadge {
   display: inline-block;
   padding: 6px 16px;
   border-radius: 20px;
@@ -163,13 +180,34 @@ body {
   text-align: center;
 }
 
-.highPriority { background-color: var(--priority-high); color: var(--white); }
-.mediumPriority { background-color: var(--priority-medium); color: var(--white); }
-.lowPriority { background-color: var(--priority-low); color: var(--white); }
+.highPriority {
+  background-color: var(--priority-high);
+  color: var(--white);
+}
+.mediumPriority {
+  background-color: var(--priority-medium);
+  color: var(--white);
+}
+.lowPriority {
+  background-color: var(--priority-low);
+  color: var(--white);
+}
 
-.statusPending { border: 1px solid var(--status-pending); color: var(--status-pending); background-color: transparent; }
-.statusInProgress { border: 1px solid var(--status-progress); color: var(--status-progress); background-color: #fffbeb; }
-.statusCompleted { border: 1px solid var(--status-completed); color: var(--status-completed); background-color: #f0fdf4; }
+.statusPending {
+  border: 1px solid var(--status-pending);
+  color: var(--status-pending);
+  background-color: transparent;
+}
+.statusInProgress {
+  border: 1px solid var(--status-progress);
+  color: var(--status-progress);
+  background-color: #fffbeb;
+}
+.statusCompleted {
+  border: 1px solid var(--status-completed);
+  color: var(--status-completed);
+  background-color: #f0fdf4;
+}
 
 /*  Buttons */
 .createBtn {
@@ -186,23 +224,46 @@ body {
   transition: background-color 0.2s;
 }
 
-.createBtn:hover { background-color: #cba04d; }
-
-.actionGroup { display: flex; gap: 12px; align-items: center; justify-content: center; }
-.actionBtn {
-  display: flex; align-items: center; gap: 6px;
-  background: none; border: none; font-size: 13px;
-  font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity 0.2s;
+.createBtn:hover {
+  background-color: #cba04d;
 }
-.actionBtn:hover { opacity: 0.7; }
-.editBtn { color: var(--text-dark); }
+
+.actionGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.actionBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.actionBtn:hover {
+  opacity: 0.7;
+}
+.editBtn {
+  color: var(--text-dark);
+}
 
 .deleteBtn {
-  color: var(--priority-high); border: 1px solid var(--priority-high);
-  padding: 6px 12px; border-radius: 6px; background-color: transparent;
+  color: var(--priority-high);
+  border: 1px solid var(--priority-high);
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: transparent;
 }
-.deleteBtn:hover { background-color: #fef2f2; opacity: 1; }
-
+.deleteBtn:hover {
+  background-color: #fef2f2;
+  opacity: 1;
+}
 
 .navRightSide {
   display: flex;
