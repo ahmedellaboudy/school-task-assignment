@@ -1,4 +1,5 @@
-/* ── ADMIN DASHBOARD PAGE STYLES ── */
+/* ── GOOGLE FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 * {
   margin: 0;
@@ -7,64 +8,61 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  color: #1f2c56;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
 }
 
-/* ── WELCOME BANNER ── */
 .welcome-banner {
-  background-color: #1f2c56;
-  margin: 30px 60px;
-  border-radius: 10px;
-  padding: 32px 40px;
+  background-color: #1b2c49;
+  color: #ffffff;
+  padding: 50px 40px;
+  text-align: center;
 }
 
 .welcome-banner h1 {
-  color: white;
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 700;
+  letter-spacing: -0.3px;
 }
 
-/* ── DASHBOARD CARDS GRID ── */
+main {
+  padding: 50px 60px;
+}
+
 .dashboard-grid {
   display: flex;
+  justify-content: center;
   gap: 30px;
-  padding: 10px 60px 60px 60px;
   flex-wrap: wrap;
 }
 
-/* ── DASHBOARD CARD ── */
 .dashboard-card {
-  background-color: #ffffff;
+  background-color: var(--white);
   border-radius: 12px;
-  padding: 40px 36px;
-  flex: 1;
-  min-width: 280px;
+  padding: 40px 35px;
+  width: 320px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   transition: transform 0.25s, box-shadow 0.25s;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  text-decoration: none;
-  color: inherit;
+  gap: 14px;
 }
 
 .dashboard-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.11);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* ── CARD HEADER (icon + title) ── */
 .card-header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
 }
 
 .card-icon-wrapper {
-  width: 64px;
-  height: 64px;
+  width: 52px;
+  height: 52px;
   background-color: #fdf5dc;
   border-radius: 50%;
   display: flex;
@@ -74,46 +72,44 @@ body {
 }
 
 .card-icon-wrapper i {
-  font-size: 26px;
-  color: #d4af37;
+  font-size: 22px;
+  color: var(--accent-gold);
 }
 
 .card-header h2 {
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  color: #1f2c56;
+  color: var(--primary-blue);
 }
 
-/* ── CARD DESCRIPTION ── */
 .card-desc {
-  font-size: 0.95rem;
-  color: #6b7a99;
-  line-height: 1.65;
+  font-size: 0.92rem;
+  color: var(--text-gray);
+  line-height: 1.7;
 }
 
-/* ── CARD LINK ── */
 .card-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: #d4af37;
-  font-weight: 700;
-  font-size: 0.95rem;
+  gap: 8px;
+  color: var(--accent-gold);
+  font-weight: 600;
+  font-size: 0.9rem;
   text-decoration: none;
   margin-top: auto;
-  transition: gap 0.2s;
+  transition: gap 0.2s, color 0.2s;
 }
 
 .card-link:hover {
-  gap: 10px;
+  gap: 12px;
+  color: #cba04d;
 }
 
-/* ── FOOTER ── */
 footer {
-  border-top: 1px solid #dde1ea;
+  background-color: var(--bg-color);
+  border-top: 1px solid var(--border-color);
   text-align: center;
   padding: 24px 20px;
-  color: #6b7a99;
-  font-size: 0.9rem;
-  background-color: #f0f2f5;
+  color: var(--text-gray);
+  font-size: 0.88rem;
 }

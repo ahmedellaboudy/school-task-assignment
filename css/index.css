@@ -1,22 +1,15 @@
-/* ── INDEX PAGE STYLES ── */
-
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ── GOOGLE FONTS ── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f2f5;
-  color: #1f2c56;
+  color: var(--text-dark);
 }
 
-/* ── HERO SECTION ── */
 .hero {
-  background-color: #1f2c56;
-  color: white;
+  background-color: #1b2c49;
+  color: var(--white);
   text-align: center;
   padding: 100px 40px;
   min-height: 420px;
@@ -32,16 +25,18 @@ body {
   font-weight: 800;
   line-height: 1.2;
   max-width: 750px;
+  letter-spacing: -0.4px;
+  color: var(--white);
 }
 
 .hero p {
-  font-size: 1.1rem;
-  color: #c9d3e8;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: #cdd5eb;
   max-width: 620px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
-/* ── HERO BUTTONS ── */
 .hero-buttons {
   display: flex;
   gap: 20px;
@@ -51,41 +46,43 @@ body {
 }
 
 .btn-primary {
-  background-color: #d4af37;
-  color: #1f2c56;
-  border: 2px solid #d4af37;
+  background-color: var(--accent-gold);
+  color: var(--primary-blue);
+  border: 2px solid var(--accent-gold);
   padding: 14px 36px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
   display: inline-block;
+  letter-spacing: 0.3px;
 }
 
 .btn-primary:hover {
-  background-color: #b8962e;
-  border-color: #b8962e;
+  background-color: #cba04d;
+  border-color: #cba04d;
 }
 
 .btn-outline {
   background-color: transparent;
-  color: #d4af37;
-  border: 2px solid #d4af37;
+  color: var(--accent-gold);
+  border: 2px solid var(--accent-gold);
   padding: 14px 36px;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 700;
   border-radius: 6px;
   cursor: pointer;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
   display: inline-block;
+  letter-spacing: 0.3px;
 }
 
 .btn-outline:hover {
-  background-color: #d4af37;
-  color: #1f2c56;
+  background-color: var(--accent-gold);
+  color: var(--primary-blue);
 }
 
 /* ── FEATURES SECTION ── */
@@ -105,7 +102,7 @@ body {
 
 /* ── FEATURE CARD ── */
 .feature-card {
-  background-color: #ffffff;
+  background-color: var(--white);
   border-radius: 12px;
   padding: 45px 35px;
   width: 300px;
@@ -132,28 +129,28 @@ body {
 
 .feature-icon-wrapper i {
   font-size: 28px;
-  color: #d4af37;
+  color: var(--accent-gold);
 }
 
 .feature-card h3 {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  color: #1f2c56;
+  color: var(--primary-blue);
   margin-bottom: 12px;
 }
 
 .feature-card p {
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   color: #6b7a99;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 /* ── FOOTER ── */
 footer {
   background-color: #f0f2f5;
-  border-top: 1px solid #dde1ea;
+  border-top: 1px solid var(--border-color);
   text-align: center;
   padding: 24px 20px;
   color: #6b7a99;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
