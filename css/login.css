@@ -9,190 +9,177 @@
 }
 
 body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-dark);
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
 }
 
-
-
 .header {
-    background-color: var(--primary-blue);
-    padding: 20px 40px;
+  background-color: var(--primary-blue);
+  padding: 20px 40px;
 }
 
 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo-icon {
-    font-size: 28px;
-    color: var(--accent-gold);
+  font-size: 28px;
+  color: var(--accent-gold);
 }
 
 .logo-text {
-    margin: 0;
-    color: var(--white);
-    font-size: 24px;
-    font-weight: bold;
+  margin: 0;
+  color: var(--white);
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: var(--white);
-    font-size: 18px;
-    font-weight: bold;
-    transition: 0.3s;
+  text-decoration: none;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .nav-links a:hover {
-    color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
 .nav-links .active {
-    color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
-
-
 .main {
-    text-align: center;
-    padding: 20px 20px 40px;
+  text-align: center;
+  padding: 20px 20px 40px;
+  margin-top: 30px
 }
 
 .page-title {
-    font-size: 36px;
-    margin-bottom: 6px;
-    color: var(--primary-blue);
+  font-size: 36px;
+  margin-bottom: 6px;
+  color: var(--primary-blue);
 }
 
 .page-text {
-    font-size: 18px;
-    color: var(--text-gray);
-    margin-bottom: 20px;
+  font-size: 18px;
+  color: var(--text-gray);
+  margin-bottom: 20px;
 }
 
-
-
 .card {
-    width: 380px;
-    margin: auto;
-    background-color: var(--white);
-    padding: 30px;
-    border-radius: 18px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  width: 500px;
+  margin: auto;
+  background-color: var(--white);
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .card-icon {
-    width: 70px;
-    height: 70px;
-    margin: 0 auto 18px;
-    background-color: #fdf6e9;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    color: var(--accent-gold);
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 18px;
+  background-color: #fdf6e9;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: var(--accent-gold);
 }
 
 .welcome {
-    font-size: 28px;
-    margin-bottom: 25px;
-    color: var(--primary-blue);
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: var(--primary-blue);
 }
 
-
-
 .form {
-    text-align: left;
+  text-align: left;
 }
 
 .form label {
-    display: block;
-    margin-bottom: 8px;
-    margin-top: 14px;
-    font-weight: bold;
-    color: var(--primary-blue);
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 14px;
+  font-weight: bold;
+  color: var(--primary-blue);
 }
 
 .form input {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    box-sizing: border-box;
-    margin-bottom: 18px;
-    font-size: 15px;
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 18px;
+  font-size: 15px;
 }
 
 .form input:focus {
-    outline: none;
-    border-color: var(--accent-gold);
+  outline: none;
+  border-color: var(--accent-gold);
 }
 
-
-
 .login-btn {
-    width: 100%;
-    padding: 14px;
-    background-color: var(--accent-gold);
-    color: var(--primary-blue);
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: 0.3s;
+  width: 100%;
+  padding: 14px;
+  background-color: var(--accent-gold);
+  color: var(--primary-blue);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: 0.3s;
 }
 
 .login-btn:hover {
-    background-color: #cba04d;
+  background-color: #cba04d;
 }
 
-
-
 .bottom-text {
-    margin-top: 18px;
-    font-size: 15px;
-    color: var(--text-gray);
+  margin-top: 18px;
+  font-size: 15px;
+  color: var(--text-gray);
 }
 
 .bottom-text a {
-    color: var(--primary-blue);
-    font-weight: bold;
-    text-decoration: none;
+  color: var(--primary-blue);
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .bottom-text a:hover {
-    color: var(--accent-gold);
+  color: var(--accent-gold);
 }
 
-
-
 .error-message {
-    color: #e74c3c;       
-    font-size: 13px;
-    margin-top: -12px;     
-    margin-bottom: 12px;
-    display: block;
-    min-height: 16px;      
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: -12px;
+  margin-bottom: 12px;
+  display: block;
+  min-height: 16px;
 }
