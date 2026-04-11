@@ -1,0 +1,168 @@
+:root {
+  --primary-blue: #16243d;
+  --accent-gold: #dcb45e;
+  --bg-color: #f8f9fa;
+  --white: #ffffff;
+  --text-dark: #1e293b;
+  --text-gray: #64748b;
+  --border-color: #e2e8f0;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+}
+
+.main {
+    padding: 35px 20px; 
+}
+
+.card {
+    width: 390px;
+    margin: auto;
+    background-color: var(--white);
+    padding: 26px;
+    border-radius: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 18px;
+    background-color: #fdf6e9;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: var(--accent-gold);
+}
+
+.welcome {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--primary-blue);
+}
+
+.card-text {
+    font-size: 15px;
+    color: var(--text-gray);
+    margin-bottom: 25px;
+}
+
+
+
+.form {
+    text-align: left;
+}
+
+.form label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 14px;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-sizing: border-box;
+    margin-bottom: 18px;
+    font-size: 15px;
+}
+
+.form input:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+}
+
+
+
+.roles {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.roles input {
+    display: none;
+}
+
+.roles label {
+    width: 50%;
+    text-align: center;
+    background-color: #f1f5f9;
+    color: var(--text-gray);
+    padding: 14px 0;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+input[type="radio"]:checked + label {
+    background-color: var(--accent-gold);
+    color: var(--primary-blue);
+}
+
+
+
+.signup-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--accent-gold);
+    color: var(--primary-blue);
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.signup-btn:hover {
+    background-color: #cba04d;
+}
+
+
+
+.bottom-text {
+    margin-top: 20px;
+    font-size: 15px;
+    color: var(--text-gray);
+    text-align: center;
+}
+
+.bottom-text a {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.bottom-text a:hover {
+    color: var(--accent-gold);
+}
+
+.error-message {
+    color: #e74c3c;               
+    font-size: 13px;
+    margin-top: -12px;            
+    margin-bottom: 10px;
+    display: block;
+    min-height: 16px;              
+}
+
+#successMessage {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+}
