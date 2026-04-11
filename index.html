@@ -2,60 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>School Task Assignment</title>
-    <style>
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 16px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>School Task Assignment</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/index.css">
 </head>
 
 <body>
 
-<header>
-    <nav>
-        <h2>School Task System</h2>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="login.html">Login</a></li>
-            <li><a href="signup.html">Sign Up</a></li>
-            <li><a href="admin/admin-dashboard.html">Admin Dashboard</a></li>
-            <li><a href="teacher/teacher-dashboard.html">Teacher Dashboard</a></li>
-            <li><a href="index.html">Logout</a></li>
-        </ul>
-    </nav>
-</header>
-
-<main>
-
-    <h1>Welcome to School Task Assignment System</h1>
-
+  <section class="hero">
+    <h1>Welcome to School Task System</h1>
     <p>
-        This system allows school administrators to assign tasks to teachers
-        and allows teachers to manage and complete their tasks easily.
+      Streamline your academic workflow with powerful task management
+      designed for educators and administrators.
     </p>
+    <div class="hero-buttons">
+      <a href="login.html" class="btn-primary">Login</a>
+      <a href="signup.html" class="btn-outline">Sign Up</a>
+    </div>
+  </section>
 
-    <h2>Key Features</h2>
+  <section class="features">
+    <div class="features-grid">
 
-    <ul>
-        <li>Admins can create and manage tasks.</li>
-        <li>Teachers can view and complete assigned tasks.</li>
-        <li>Teachers can search tasks by priority.</li>
-    </ul>
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <i class="fa-solid fa-list-check"></i>
+        </div>
+        <h3>Create Tasks</h3>
+        <p>Easily create and assign tasks to teachers with detailed descriptions, priorities, and due dates.</p>
+      </div>
 
-    <br>
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3>Manage Tasks</h3>
+        <p>View, edit, and organize all your tasks in one central dashboard with powerful filtering options.</p>
+      </div>
 
-    <a href="login.html"><button>Login</button></a>
-    <a href="signup.html"><button>Sign Up</button></a>
+      <div class="feature-card">
+        <div class="feature-icon-wrapper">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+        <h3>Track Progress</h3>
+        <p>Monitor task completion status and keep everyone accountable with real-time progress tracking.</p>
+      </div>
 
-</main>
+    </div>
+  </section>
 
-<footer>
-    <p>School Task Assignment System - 2026</p>
-</footer>
+  <footer>
+    <p>&copy; 2026 School Task System.</p>
+  </footer>
+
+  <script src="JS/navbar2.js"></script>
 
 </body>
 </html>

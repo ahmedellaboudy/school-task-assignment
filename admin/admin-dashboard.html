@@ -2,50 +2,62 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <style>
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 16px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/admin-dashboard.css">
 </head>
 
 <body>
+  <div class="welcome-banner">
+    <h1>Welcome Back, Admin 👋</h1>
+  </div>
+  
+  <main>
+    <div class="dashboard-grid">
 
-<header>
-    <nav>
-        <h2>School Task System</h2>
-        <ul>
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../login.html">Login</a></li>
-            <li><a href="../signup.html">Sign Up</a></li>
-            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
-            <li><a href="../teacher/teacher-dashboard.html">Teacher Dashboard</a></li>
-            <li><a href="../login.html">Logout</a></li>
-        </ul>
-    </nav>
-</header>
+      <div class="dashboard-card">
+        <div class="card-header">
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+          <h2>Add New Task</h2>
+        </div>
+        <p class="card-desc">
+          Create and assign new tasks to teachers with detailed information,
+          priorities, and deadlines.
+        </p>
+        <a href="add-task.html" class="card-link">
+          Get Started <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
 
-<main>
+      <div class="dashboard-card">
+        <div class="card-header">
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-clipboard-list"></i>
+          </div>
+          <h2>View My Tasks</h2>
+        </div>
+        <p class="card-desc">
+          Monitor all tasks you've created, track their status, and manage
+          assignments efficiently.
+        </p>
+        <a href="admin-tasks.html" class="card-link">
+          View All <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
 
-    <h1>Welcome Admin</h1>
+    </div>
+  </main>
 
-    <p>Use the following options to manage tasks.</p>
+  <footer>
+    <p>&copy; 2026 School Task System.</p>
+  </footer>
 
-    <ul>
-        <li><a href="add-task.html">Add New Task</a></li>
-        <br>
-        <li><a href="admin-tasks.html">View My Tasks</a></li>
-    </ul>
-
-</main>
-
-<footer>
-    <p>Admin Panel - School Task System</p>
-</footer>
+  <script src="../JS/navbar2.js"></script>
 
 </body>
 </html>

@@ -64,7 +64,6 @@ body {
   align-items: center;
 }
 
-
 .navLinks a {
   text-decoration: none;
   color: var(--white);
@@ -79,6 +78,8 @@ body {
 
 .activeLink {
   color: var(--accent-gold) !important;
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 4px;
 }
 
 /* Main Layout & Dashboard Headers */
@@ -152,7 +153,7 @@ body {
 .teacherName, .dueDate { color: var(--text-dark); }
 .centered { text-align: center !important; }
 
-/* Badges & Statuses*/
+/* Badges & Statuses */
 .priorityBadge, .statusBadge {
   display: inline-block;
   padding: 6px 16px;
@@ -170,7 +171,7 @@ body {
 .statusInProgress { border: 1px solid var(--status-progress); color: var(--status-progress); background-color: #fffbeb; }
 .statusCompleted { border: 1px solid var(--status-completed); color: var(--status-completed); background-color: #f0fdf4; }
 
-/*  Buttons*/
+/*  Buttons */
 .createBtn {
   background-color: var(--accent-gold);
   color: var(--primary-blue);
@@ -203,21 +204,18 @@ body {
 .deleteBtn:hover { background-color: #fef2f2; opacity: 1; }
 
 
-
-/*NavBar Style*/
 .navRightSide {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-
 .userDropdownBtn {
   background: transparent;
-  border: 2px solid var(--accent-gold); 
+  border: 2px solid var(--accent-gold);
   color: var(--white);
   padding: 8px 16px;
-  border-radius: 25px; 
+  border-radius: 25px;
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
@@ -231,13 +229,12 @@ body {
   background-color: rgba(220, 180, 94, 0.1);
 }
 
-
 .dropdownContainer {
   position: relative;
 }
 
 .dropdownMenu {
-  display: none; 
+  display: none;
   position: absolute;
   top: 120%;
   right: 0;
