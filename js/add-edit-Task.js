@@ -67,17 +67,30 @@ if (taskForm) {
     e.preventDefault();
     let tasks = getTasks();
 
-    let taskData = {
-      id: document.getElementById("taskId").value,
-      createdBy: document.getElementById("createdBy").value,
-      title: document.getElementById("title").value,
-      subject: document.getElementById("subject").value,
-      desc: document.getElementById("desc").value,
-      teacher: document.getElementById("teacher").value,
-      date: document.getElementById("deadline").value,
-      priority: document.getElementById("priority").value,
-      status: "Pending",
-    };
+  const teacherNameInput = document.getElementById("teacher").value.trim();
+  const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+  
+  const teacherObject = allUsers.find(u => u.username === teacherNameInput && u.role === "teacher");
+
+  if (!teacherObject) {
+    alert("Teacher name not found! Please make sure the name matches a registered teacher.");
+    return;
+  }
+
+
+
+let taskData = {
+    id: document.getElementById("taskId").value,
+    createdBy: document.getElementById("createdBy").value,
+    title: document.getElementById("title").value,
+    subject: document.getElementById("subject").value,
+    desc: document.getElementById("desc").value,
+    teacher: teacherNameInput,
+    assignedToId: teacherObject.id, 
+    date: document.getElementById("deadline").value,
+    priority: document.getElementById("priority").value,
+    status: "Pending",
+  };
 
     if (editId) {
       for (let i = 0; i < tasks.length; i++) {

@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-    displayTeacherTasks();
-
+    displayTeacherTasks('all');
 
     const priorityFilter = document.getElementById('priority-filter');
     if (priorityFilter) {
@@ -11,6 +9,52 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function displayTeacherTasks(filter = 'all') {
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (!currentUser) return;
+
+    const allTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    
+    let myTasks = allTasks.filter(task => task.assignedToId === currentUser.id);
+
+    if (filter !== 'all') {
+        myTasks = myTasks.filter(task => task.priority.toLowerCase() === filter.toLowerCase());
+    }
+
+    const tableBody = document.getElementById("teacherTasksBody");
+    if (!tableBody) return;
+
+    tableBody.innerHTML = "";
+
+    if (myTasks.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="7" class="centered">No tasks found.</td></tr>`;
+        return;
+    }
+
+    myTasks.forEach(task => {
+        let tr = document.createElement("tr");
+        
+        const priorityClass = getPriorityClass(task.priority);
+        const statusClass = getStatusClass(task.status);
+
+        tr.innerHTML = `
+            <td class="centered">${task.id}</td>
+            <td>${task.title}</td>
+            <td>${task.desc}</td>
+            <td>${task.createdBy}</td>
+            <td class="centered">
+                <span class="priorityBadge ${priorityClass}">${task.priority}</span>
+            </td>
+            <td class="centered">
+                <span class="statusBadge ${statusClass}">${task.status}</span>
+            </td>
+            <td class="centered">
+                <a href="task-details.html?id=${task.id}" class="actionBtn">View Details</a>
+            </td>
+        `;
+        tableBody.appendChild(tr);
+    });
+}
 
 function getPriorityClass(priority) {
     if (!priority) return '';
@@ -39,56 +83,6 @@ function saveTasks(tasks) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-
-function displayTeacherTasks(filter = 'all') {
-    const tableBody = document.getElementById("teacherTasksBody");
-    if (!tableBody) return;
-
-    tableBody.innerHTML = ""; 
-    let tasks = getTasks();
-
-    
-    if (filter !== 'all') {
-        tasks = tasks.filter(task => task.priority && task.priority.toLowerCase() === filter.toLowerCase());
-    }
-
-    if (tasks.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="7" class="centered" style="padding: 20px; color: #64748b;">No tasks found.</td></tr>`;
-        return;
-    }
-
-    for (let i = 0; i < tasks.length; i++) {
-        let task = tasks[i];
-        let tr = document.createElement("tr");
-
-        tr.innerHTML = `
-            <td class="taskID centered">${task.id}</td>
-            <td class="taskTitleText">${task.title}</td>
-            <td class="taskDesc">${task.desc}</td>
-            <td class="teacherName">${task.createdBy || 'Admin'}</td>
-            <td class="centered">
-                <span class="priorityBadge ${getPriorityClass(task.priority)}">${task.priority}</span>
-            </td>
-            <td class="centered">
-                <span class="statusBadge ${getStatusClass(task.status)}">${task.status}</span>
-            </td>
-            <td class="centered actionGroup">
-                <a href="task-details.html?id=${task.id}" class="actionBtn editBtn" style="color: #64748b;">
-                    <i class="fa-solid fa-eye"></i> View
-                </a>
-                
-                ${task.status !== 'Completed' ? `
-                <button type="button" class="actionBtn" style="color: #22c55e; border: 1px solid #22c55e; padding: 4px 10px; border-radius: 4px; background: none; cursor: pointer;" onclick="markAsComplete('${task.id}')">
-                    <i class="fa-solid fa-check"></i> Complete
-                </button>
-                ` : ''}
-            </td>
-        `;
-        tableBody.appendChild(tr);
-    }
-}
-
-
 function markAsComplete(taskId) {
     let tasks = getTasks();
     let taskIndex = tasks.findIndex(t => t.id === taskId);
@@ -98,10 +92,8 @@ function markAsComplete(taskId) {
             tasks[taskIndex].status = "Completed"; 
             saveTasks(tasks); 
             
-        
             const priorityFilter = document.getElementById('priority-filter');
             const currentFilter = priorityFilter ? priorityFilter.value : 'all';
-            
             displayTeacherTasks(currentFilter); 
         }
     }
