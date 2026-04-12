@@ -1,72 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Details | SchoolTask</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Details | SchoolTask</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/task-details.css" />
 
-  <link rel="stylesheet" href="../css/global.css" />
-  <link rel="stylesheet" href="../css/task-details.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-</head>
+  <body>
+    <div id="navbar-placeholder"></div>
+    <main class="mainContainer dashboardContainer detailsMain">
+      <a class="back-task-details" href="javascript:history.back()">
+        <i class="fas fa-arrow-left"></i> Back to My Tasks
+      </a>
 
-<body>
-
-  <div id="navbar-placeholder"></div>
-  <main class="mainContainer dashboardContainer detailsMain">
-    <a class="back-task-details" href="javascript:history.back()">
-      <i class="fas fa-arrow-left"></i> Back to My Tasks
-    </a>
-
-    <div class="detailsCard">
-      <div class="detailsHeader">
-        <div class="detailsTitle">
-          <h1 id="detailTitle">Loading Title...</h1>
-          <span id="detailId">TSK-XXX</span>
+      <div class="detailsCard">
+        <div class="detailsHeader">
+          <div class="detailsTitle">
+            <h1 id="detailTitle">Loading Title...</h1>
+            <span id="detailId">TSK-XXX</span>
+          </div>
+          <div id="detailPriority"></div>
         </div>
-        <div id="detailPriority"></div>
-      </div>
 
-      <hr>
+        <hr />
 
-      <div class="detailSection">
-        <div class="sectionLabel"><i class="fa-solid fa-book"></i> Subject</div>
-        <div class="sectionValue" id="detailSubject">Loading...</div>
-      </div>
-
-      <hr>
-
-      <div class="detailSection">
-        <div class="sectionLabel"><i class="fa-solid fa-user-circle"></i> Assigned By</div>
-        <div class="sectionValue" id="detailAdmin">Loading...</div>
-        <div class="assignedHint">Assigned recently</div>
-      </div>
-
-      <hr>
-
-      <div class="detailSection">
-        <div class="sectionLabel"><i class="fa-regular fa-calendar"></i> Due Date</div>
-        <div class="sectionValue" id="detailDate">Loading...</div>
-      </div>
-
-      <hr>
-
-      <div class="detailSection">
-        <div class="sectionLabel">Task Description</div>
-        <div class="descriptionBox" id="detailDesc">
-          Loading description...
+        <div class="detailSection">
+          <div class="sectionLabel">
+            <i class="fa-solid fa-book"></i> Subject
+          </div>
+          <div class="sectionValue" id="detailSubject">Loading...</div>
         </div>
+
+        <hr />
+
+        <div class="detailSection">
+          <div class="sectionLabel">
+            <i class="fa-solid fa-user-circle"></i> Assigned By
+          </div>
+          <div class="sectionValue" id="detailAdmin">Loading...</div>
+          <div class="assignedHint">Assigned recently</div>
+        </div>
+
+        <hr />
+
+        <div class="detailSection">
+          <div class="sectionLabel">
+            <i class="fa-regular fa-calendar"></i> Due Date
+          </div>
+          <div class="sectionValue" id="detailDate">Loading...</div>
+        </div>
+
+        <hr />
+
+        <div class="detailSection">
+          <div class="sectionLabel">Task Description</div>
+          <div class="descriptionBox" id="detailDesc">
+            Loading description...
+          </div>
+        </div>
+
+        <button id="completeBtn" class="markCompleteBtn">
+          <i class="fa-solid fa-check-circle"></i> Mark as Completed
+        </button>
       </div>
+    </main>
+    <script src="../js/index.js"></script>
 
-      <button id="completeBtn" class="markCompleteBtn">
-        <i class="fa-solid fa-check-circle"></i> Mark as Completed
-      </button>
-    </div>
-  </main>
-  <script src="../js/navbar.js"></script>
-  <script src="../js/task-details.js"></script>
-</body>
-
+    <script src="../js/navbar.js"></script>
+    <script src="../js/task-details.js"></script>
+  </body>
 </html>

@@ -1,59 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Tasks | SchoolTask</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - Tasks | SchoolTask</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/admin-tasks.css" />
 
-  <link rel="stylesheet" href="../css/global.css" />
-  <link rel="stylesheet" href="../css/admin-tasks.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-</head>
+  <body>
+    <div id="navbar-placeholder"></div>
+    <main class="mainContainer dashboardContainer">
+      <header class="dashboardHeader adminHeader">
+        <div class="headerText">
+          <h1 class="pageTitle">My Created Tasks</h1>
+          <p class="subtitle">Manage tasks you have assigned to teachers.</p>
+        </div>
 
-<body>
+        <div class="headerActions">
+          <a href="admin-search.html" class="searchLinkBtn">
+            <i class="fa-solid fa-search"></i> Search
+          </a>
+          <a href="add-task.html" class="createBtn">
+            <i class="fa-solid fa-plus"></i> Create New Task
+          </a>
+        </div>
+      </header>
 
-  <div id="navbar-placeholder"></div>
-  <main class="mainContainer dashboardContainer">
-    <header class="dashboardHeader adminHeader">
-      <div class="headerText">
-        <h1 class="pageTitle">My Created Tasks</h1>
-        <p class="subtitle">Manage tasks you have assigned to teachers.</p>
-      </div>
+      <section class="tableContainer">
+        <table class="tasksTable">
+          <thead>
+            <tr>
+              <th class="centered">ID</th>
+              <th>Task Title</th>
+              <th>Description</th>
+              <th>Assigned To</th>
+              <th>Due Date</th>
+              <th class="centered">Priority</th>
+              <th class="centered">Status</th>
+              <th class="centered">Actions</th>
+            </tr>
+          </thead>
 
-      <div class="headerActions">
-        <a href="admin-search.html" class="searchLinkBtn">
-          <i class="fa-solid fa-search"></i> Search
-        </a>
-        <a href="add-task.html" class="createBtn">
-          <i class="fa-solid fa-plus"></i> Create New Task
-        </a>
-      </div>
-    </header>
+          <tbody id="tasksTableBody"></tbody>
+        </table>
+      </section>
+    </main>
 
-    <section class="tableContainer">
-      <table class="tasksTable">
-        <thead>
-          <tr>
-            <th class="centered">ID</th>
-            <th>Task Title</th>
-            <th>Description</th>
-            <th>Assigned To</th>
-            <th>Due Date</th>
-            <th class="centered">Priority</th>
-            <th class="centered">Status</th>
-            <th class="centered">Actions</th>
-          </tr>
-        </thead>
+    <script src="../js/index.js"></script>
 
-        <tbody id="tasksTableBody">
-        </tbody>
-      </table>
-    </section>
-  </main>
-  <script src="../js/navbar.js"></script>
-  <script src="../js/admin-tasks.js"></script>
-</body>
-
+    <script src="../js/navbar.js"></script>
+    <script src="../js/admin-tasks.js"></script>
+  </body>
 </html>
