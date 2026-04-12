@@ -1,66 +1,76 @@
-document.addEventListener('DOMContentLoaded', function () {
-    displayCompletedTasks();
+document.addEventListener("DOMContentLoaded", function () {
+  displayCompletedTasks();
 
-    const priorityFilter = document.getElementById('priority-filter');
-    if (priorityFilter) {
-        priorityFilter.addEventListener('change', function(e) {
-            displayCompletedTasks(e.target.value);
-        });
-    }
+  const priorityFilter = document.getElementById("priority-filter");
+  if (priorityFilter) {
+    priorityFilter.addEventListener("change", function (e) {
+      displayCompletedTasks(e.target.value);
+    });
+  }
 });
 
 function getPriorityClass(priority) {
-    if (!priority) return '';
-    const p = priority.toLowerCase();
-    if (p === 'high') return 'highPriority';
-    if (p === 'medium') return 'mediumPriority';
-    if (p === 'low') return 'lowPriority';
-    return '';
+  if (!priority) return "";
+  const p = priority.toLowerCase();
+  if (p === "high") return "highPriority";
+  if (p === "medium") return "mediumPriority";
+  if (p === "low") return "lowPriority";
+  return "";
 }
 
 function getStatusClass(status) {
-    if (!status) return 'statusPending';
-    const s = status.toLowerCase();
-    if (s === 'pending') return 'statusPending';
-    if (s === 'in progress') return 'statusInProgress';
-    if (s === 'completed') return 'statusCompleted';
-    return 'statusPending';
+  if (!status) return "statusPending";
+  const s = status.toLowerCase();
+  if (s === "pending") return "statusPending";
+  if (s === "in progress") return "statusInProgress";
+  if (s === "completed") return "statusCompleted";
+  return "statusPending";
 }
 
 function getTasks() {
-    let tasks = localStorage.getItem("tasks");
-    return tasks ? JSON.parse(tasks) : [];
+  let tasks = localStorage.getItem("tasks");
+  return tasks ? JSON.parse(tasks) : [];
 }
 
-function displayCompletedTasks(filter = 'all') {
-    const tableBody = document.getElementById("completedTasksBody");
-    if (!tableBody) return;
+function displayCompletedTasks(filter = "all") {
+  const tableBody = document.getElementById("completedTasksBody");
+  if (!tableBody) return;
 
-    tableBody.innerHTML = ""; 
-    let allTasks = getTasks();
+  tableBody.innerHTML = "";
+  let allTasks = getTasks();
 
-    let completedTasks = allTasks.filter(task => task.status && task.status.toLowerCase() === 'completed');
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) return;
 
-    if (filter !== 'all') {
-        completedTasks = completedTasks.filter(task => task.priority && task.priority.toLowerCase() === filter.toLowerCase());
-    }
+  let completedTasks = allTasks.filter((task) => {
+    const isCompleted =
+      task.status && task.status.toLowerCase() === "completed";
+    const isAssignedToMe = task.assignedToId === currentUser.id;
 
-    if (completedTasks.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="7" class="centered" style="padding: 30px; color: #64748b; font-size: 16px;">No completed tasks found. Keep up the good work!</td></tr>`;
-        return;
-    }
+    return isCompleted && isAssignedToMe;
+  });
 
-    completedTasks.forEach(task => {
-        let tr = document.createElement("tr");
-        
+  if (filter !== "all") {
+    completedTasks = completedTasks.filter(
+      (task) =>
+        task.priority && task.priority.toLowerCase() === filter.toLowerCase(),
+    );
+  }
 
-        tr.className = "completedRow"; 
+  if (completedTasks.length === 0) {
+    tableBody.innerHTML = `<tr><td colspan="7" class="centered" style="padding: 30px; color: #64748b; font-size: 16px;">No completed tasks found. Keep up the good work!</td></tr>`;
+    return;
+  }
 
-        tr.innerHTML = `
+  completedTasks.forEach((task) => {
+    let tr = document.createElement("tr");
+    tr.className = "completedRow";
+
+    tr.innerHTML = `
             <td class="taskID centered">${task.id}</td>
             <td class="taskTitleText" style="font-weight: 600;">${task.title}</td>
             <td class="taskDesc" style="color: #94a3b8;">${task.desc}</td>
-            <td class="teacherName">${task.createdBy || 'Admin'}</td>
+            <td class="teacherName">${task.createdBy || "Admin"}</td>
             <td class="centered">
                 <span class="priorityBadge ${getPriorityClass(task.priority)}">${task.priority}</span>
             </td>
@@ -73,6 +83,6 @@ function displayCompletedTasks(filter = 'all') {
                 </a>
             </td>
         `;
-        tableBody.appendChild(tr);
-    });
+    tableBody.appendChild(tr);
+  });
 }
