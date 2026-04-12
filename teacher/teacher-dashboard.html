@@ -4,52 +4,170 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teacher Dashboard</title>
-    <style>
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 16px;
-      }
-    </style>
+    <link rel="stylesheet" href="../css/teacher-dashboard.css" />
+    <link rel="stylesheet" href="../css/global.css" />
   </head>
   <body>
-    <header>
-      <nav>
-        <h2>School Task System</h2>
-        <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="../login.html">Login</a></li>
-          <li><a href="../signup.html">Sign Up</a></li>
-          <li><a href="../admin/admin-dashboard.html">Admin Dashboard</a></li>
-          <li>
-            <a href="teacher-dashboard.html">Teacher Dashboard</a>
-          </li>
-          <li><a href="../login.html">Logout</a></li>
-        </ul>
-      </nav>
-    </header>
+    <nav>
+      <div class="leftNav">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#dcb45e"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-graduation-cap h-8 w-8 text-[#C9A84C]"
+          data-fg-h9b3="1.16:1.2275:/src/app/components/Navigation.tsx:42:11:1297:52:e:GraduationCap::::::CR9S"
+          data-fgid-h9b3=":r30:"
+        >
+          <path
+            d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"
+          ></path>
+          <path d="M22 10v6"></path>
+          <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
+        </svg>
+        <h5>SchoolTask</h5>
+      </div>
+      <div class="rightNav">
+        <a href="./teacher-dashboard.html">Home</a>
+        <a href="./teacher-tasks.html">My Tasks</a>
+        <a href="./completed-tasks.html">Completed</a>
+        <a id="logoutBtn">Logout</a>
+      </div>
+    </nav>
+    <main>
+      <div class="welcomeContainer">
+        <h2 id="welcomeMsg">Welcome</h2>
+      </div>
 
-        <div>
-          <h3>SchoolTask</h3>
+      <div class="hero">
+        <div class="cardContainer">
+          <div class="taskTitleContainer">
+            <div class="iconContainer1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="60"
+                height="60"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#c0ac59"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-clipboard-list h-8 w-8 text-[#C9A84C]"
+                data-fg-bcfn13="1.43:1.4116:/src/app/pages/TeacherDashboard.tsx:28:17:1208:52:e:ClipboardList::::::CPfu"
+                data-fgid-bcfn13=":rgv:"
+              >
+                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                <path
+                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                ></path>
+                <path d="M12 11h4"></path>
+                <path d="M12 16h4"></path>
+                <path d="M8 11h.01"></path>
+                <path d="M8 16h.01"></path>
+              </svg>
+            </div>
+
+            <h2>My Tasks</h2>
+          </div>
+          <div class="itemDesciption">
+            <h4>
+              View all tasks assigned to you with detailed information and
+              status tracking.
+            </h4>
+          </div>
+          <a href="./teacher-tasks.html">
+            <div class="viewAllContainer">
+              <h4>View All</h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-right h-5 w-5"
+                data-fg-bcfn21="1.43:1.4116:/src/app/pages/TeacherDashboard.tsx:39:15:1821:34:e:ArrowRight::::::s5N"
+                data-fgid-bcfn21=":rh4:"
+                id="viewAllArrow"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
         </div>
-<main>
 
-    <h1>Welcome Teacher</h1>
+        <div class="cardContainer">
+          <div class="taskTitleContainer">
+            <div class="iconContainer2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="60"
+                height="60"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#4fc17e"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-check-big h-8 w-8 text-[#2ECC71]"
+                data-fg-bcfn26="1.43:1.4116:/src/app/pages/TeacherDashboard.tsx:50:17:2288:50:e:CheckCircle::::::C4Wc"
+                data-fgid-bcfn26=":rh8:"
+              >
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path>
+                <path d="m9 11 3 3L22 4"></path>
+              </svg>
+            </div>
 
-    <p>Use the following options.</p>
-
-        <div>
-          <a href="../teacher/teacher-tasks.html">My Tasks</a>
-          <a href="./completed-tasks.html"><h4>Completed</h4></a>
-
+            <h2>Completed Tasks</h2>
+          </div>
+          <div class="itemDesciption">
+            <h4>
+              Review all your completed tasks and track your achievement
+              history.
+            </h4>
+          </div>
+          <a href="./completed-tasks.html">
+            <div class="viewAllContainer">
+              <h4>View History</h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-arrow-right h-5 w-5"
+                data-fg-bcfn21="1.43:1.4116:/src/app/pages/TeacherDashboard.tsx:39:15:1821:34:e:ArrowRight::::::s5N"
+                data-fgid-bcfn21=":rh4:"
+                id="viewAllArrow"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
         </div>
+      </div>
+    </main>
 
-</main>
-
-<footer>
-    <p>Teacher Dashboard - School Task System</p>
-</footer>
-
-
+    <footer>
+      <p>© 2026 School Task System. All rights reserved.</p>
+    </footer>
   </body>
+
+  <script src="../js/index.js"></script>
+  <script src="../js/teacher-dashboard.js"></script>
 </html>

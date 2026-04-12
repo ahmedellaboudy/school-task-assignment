@@ -1,61 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Completed Tasks | SchoolTask</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Completed Tasks | SchoolTask</title>
+    <link rel="stylesheet" href="../css/global.css" />
 
-  <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/completed-tasks.css" />
 
-  <link rel="stylesheet" href="../css/completed-tasks.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-</head>
+  <body>
+    <div id="navbar-placeholder"></div>
+    <main class="mainContainer dashboardContainer">
+      <header class="dashboardHeader completedHeader">
+        <div class="headerText">
+          <h1 class="pageTitle completedTitle">
+            Completed Tasks
+            <i class="fa-solid fa-square-check completedIcon"></i>
+          </h1>
+        </div>
 
-<body>
-  <div id="navbar-placeholder"></div>
-  <main class="mainContainer dashboardContainer">
-    <header class="dashboardHeader completedHeader">
-      <div class="headerText">
-        <h1 class="pageTitle completedTitle">
-          Completed Tasks
-          <i class="fa-solid fa-square-check completedIcon"></i>
-        </h1>
-      </div>
+        <div class="filterGroup">
+          <label for="priority-filter" class="filterLabel"
+            >Filter by Priority:</label
+          >
+          <select
+            name="priority-filter"
+            id="priority-filter"
+            class="filterSelect"
+          >
+            <option value="all">All</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+        </div>
+      </header>
 
-      <div class="filterGroup">
-        <label for="priority-filter" class="filterLabel">Filter by Priority:</label>
-        <select name="priority-filter" id="priority-filter" class="filterSelect">
-          <option value="all">All</option>
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
-        </select>
-      </div>
-    </header>
+      <section class="tableContainer">
+        <table class="tasksTable">
+          <thead>
+            <tr>
+              <th class="centered">ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>From</th>
+              <th class="centered">Priority</th>
+              <th class="centered">Status</th>
+              <th class="centered">Actions</th>
+            </tr>
+          </thead>
 
-    <section class="tableContainer">
-      <table class="tasksTable">
-        <thead>
-          <tr>
-            <th class="centered">ID</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>From</th>
-            <th class="centered">Priority</th>
-            <th class="centered">Status</th>
-            <th class="centered">Actions</th>
-          </tr>
-        </thead>
+          <tbody id="completedTasksBody"></tbody>
+        </table>
+      </section>
+    </main>
+    <script src="../js/index.js"></script>
 
-        <tbody id="completedTasksBody">
-        </tbody>
-      </table>
-    </section>
-  </main>
-  <script src="../js/navbar.js"></script>
-  <script src="../js/completed-tasks.js"></script>
-</body>
-
+    <script src="../js/navbar.js"></script>
+    <script src="../js/completed-tasks.js"></script>
+  </body>
 </html>
