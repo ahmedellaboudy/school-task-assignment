@@ -11,6 +11,7 @@ if (raw) {
 
 var navLinksHTML = "";
 var dropdownHTML = "";
+var homeLink = root + "index.html"; // safe default for non-logged-in users
 
 if (!user) {
   dropdownHTML = `
@@ -18,7 +19,7 @@ if (!user) {
     <a href="${root}signup.html"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
   `;
 } else if (user.isAdmin === true || user.role === "admin") {
-  homeLink = `${root}admin/admin-dashboard.html`;
+  homeLink = root + "admin/admin-dashboard.html";
   navLinksHTML = `
     <li><a href="${root}admin/admin-tasks.html">My Tasks</a></li>
     <li><a href="${root}admin/add-task.html">Add Task</a></li>
@@ -26,25 +27,24 @@ if (!user) {
   `;
   dropdownHTML = `<a href="#" id="logoutAction"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>`;
 } else if (user.isAdmin === false || user.role === "teacher") {
-  homeLink = `${root}teacher/teacher-dashboard.html`;
+  homeLink = root + "teacher/teacher-dashboard.html";
   navLinksHTML = `
     <li><a href="${root}teacher/teacher-tasks.html">My Tasks</a></li>
-    <li><a href="${root}teacher/completed-tasks.html">Completed</a></li>  `;
+    <li><a href="${root}teacher/completed-tasks.html">Completed</a></li>
+  `;
   dropdownHTML = `<a href="#" id="logoutAction"><i class="fa-solid fa-sign-out-alt"></i> Logout</a>`;
 }
 
 var navbarHTML = `
   <header class="mainHeader">
     <nav class="ignoreNav">
-    <a href="${homeLink}" class="brandLogo">
+      <a href="${homeLink}" class="brandLogo">
         <i class="fa-solid fa-graduation-cap"></i> SchoolTask
       </a>
-
       <div class="navRightSide">
         <ul class="navLinks">
           ${navLinksHTML}
         </ul>
-
         <div class="dropdownContainer">
           <button class="userDropdownBtn" id="userMenuBtn">
             <i class="fa-solid fa-user"></i>
