@@ -47,6 +47,7 @@ form.addEventListener("submit", function (e) {
 
     
     const currentUser = {
+    id: foundUser.id,
     username: foundUser.username,
     role: foundUser.role,
     isAdmin: foundUser.role === "admin"

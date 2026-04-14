@@ -42,7 +42,6 @@ if (tableBody) {
     }
   }
 
-
   displayTasks();
 }
 
@@ -67,13 +66,37 @@ if (taskForm) {
     e.preventDefault();
     let tasks = getTasks();
 
+    const taskIdInput = document.getElementById("taskId").value.trim();
+    const teacherNameInput = document.getElementById("teacher").value.trim();
+    const allUsers = JSON.parse(localStorage.getItem("users")) || [];
+
+    const teacherObject = allUsers.find(
+      (u) => u.username === teacherNameInput && u.role === "teacher",
+    );
+
+    if (!teacherObject) {
+      alert(
+        "Teacher name not found! Please make sure the name matches a registered teacher.",
+      );
+      return;
+    }
+
+    if (!editId) {
+      const isDuplicate = tasks.some((task) => task.id === taskIdInput);
+      if (isDuplicate) {
+        alert("This ID already exists. Please use a unique ID.");
+        return;
+      }
+    }
+
     let taskData = {
-      id: document.getElementById("taskId").value,
+      id: taskIdInput,
       createdBy: document.getElementById("createdBy").value,
       title: document.getElementById("title").value,
       subject: document.getElementById("subject").value,
       desc: document.getElementById("desc").value,
-      teacher: document.getElementById("teacher").value,
+      teacher: teacherNameInput,
+      assignedToId: teacherObject.id,
       date: document.getElementById("deadline").value,
       priority: document.getElementById("priority").value,
       status: "Pending",
