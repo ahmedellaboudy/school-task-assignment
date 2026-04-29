@@ -1,117 +1,87 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const searchBtn = document.getElementById('searchBtn');
-    const searchInput = document.getElementById('searchKeyword');
+const API_URL = "http://127.0.0.1:8000/api";
 
-    if (searchBtn && searchInput) {
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
-        });
-    }
+async function getTasks() {
+  const res = await fetch(`${API_URL}/tasks/`);
+  return await res.json();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchKeyword');
+
+  searchBtn?.addEventListener('click', performSearch);
+
+  searchInput?.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') performSearch();
+  });
 });
 
 function getPriorityClass(priority) {
-    if (!priority) return '';
-    const p = priority.toLowerCase();
-    if (p === 'high') return 'highPriority';
-    if (p === 'medium') return 'mediumPriority';
-    if (p === 'low') return 'lowPriority';
-    return '';
+  if (!priority) return '';
+  if (priority.toLowerCase() === 'high') return 'highPriority';
+  if (priority.toLowerCase() === 'medium') return 'mediumPriority';
+  if (priority.toLowerCase() === 'low') return 'lowPriority';
+  return '';
 }
 
 function getStatusClass(status) {
-    if (!status) return 'statusPending';
-    const s = status.toLowerCase();
-    if (s === 'pending') return 'statusPending';
-    if (s === 'in progress') return 'statusInProgress';
-    if (s === 'completed') return 'statusCompleted';
-    return 'statusPending';
+  if (!status) return 'statusPending';
+  if (status.toLowerCase() === 'pending') return 'statusPending';
+  if (status.toLowerCase() === 'in progress') return 'statusInProgress';
+  if (status.toLowerCase() === 'completed') return 'statusCompleted';
+  return 'statusPending';
 }
 
-function getTasks() {
-    let tasks = localStorage.getItem("tasks");
-    return tasks ? JSON.parse(tasks) : [];
-}
+async function performSearch() {
+  const keyword = document.getElementById('searchKeyword').value.toLowerCase().trim();
+  const tableBody = document.getElementById('searchResultsBody');
 
-function saveTasks(tasks) {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+  if (!tableBody) return;
 
-function performSearch() {
-    const keyword = document.getElementById('searchKeyword').value.toLowerCase().trim();
-    const tableBody = document.getElementById('searchResultsBody');
-    
-    if (!tableBody) return;
+  tableBody.innerHTML = "";
 
-    let tasks = getTasks();
-    tableBody.innerHTML = ""; 
+  if (!keyword) {
+    tableBody.innerHTML = `<tr><td colspan="7">No keyword</td></tr>`;
+    return;
+  }
 
-    if (keyword === "") {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="7" class="centered" style="padding: 30px; color: #f59e0b;">
-                    <i class="fa-solid fa-triangle-exclamation" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>
-                    Please enter a keyword to search.
-                </td>
-            </tr>`;
-        return;
-    }
+  const tasks = await getTasks();
 
-    const results = tasks.filter(task => 
-        (task.title && task.title.toLowerCase().includes(keyword)) || 
-        (task.id && task.id.toLowerCase().includes(keyword)) ||
-        (task.teacher && task.teacher.toLowerCase().includes(keyword))
-    );
+  // ✅ تصليح — بندور على createdBy بدل teacher
+  const results = tasks.filter(task =>
+    task.title?.toLowerCase().includes(keyword) ||
+    task.id?.toString().includes(keyword) ||
+    task.createdBy?.toLowerCase().includes(keyword)
+  );
 
-    if (results.length === 0) {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="7" class="centered" style="padding: 30px; color: #ef4444;">
-                    <i class="fa-solid fa-circle-xmark" style="font-size: 24px; display: block; margin-bottom: 10px;"></i>
-                    No tasks found matching "<strong>${keyword}</strong>".
-                </td>
-            </tr>`;
-        return;
-    }
+  if (results.length === 0) {
+    tableBody.innerHTML = `<tr><td colspan="7">No results</td></tr>`;
+    return;
+  }
 
-    results.forEach(task => {
-        let tr = document.createElement("tr");
-        
-        tr.innerHTML = `
-            <td class="taskID centered">${task.id}</td>
-            <td class="taskTitleText">${task.title}</td>
-            <td class="teacherName">${task.teacher}</td>
-            <td class="dueDate">${task.date}</td>
-            <td class="centered">
-                <span class="priorityBadge ${getPriorityClass(task.priority)}">${task.priority}</span>
-            </td>
-            <td class="centered">
-                <span class="statusBadge ${getStatusClass(task.status)}">${task.status}</span>
-            </td>
-            <td class="centered actionGroup">
-                <a href="edit-task.html?id=${task.id}" class="actionBtn editBtn">
-                    <i class="fa-solid fa-pen"></i> Edit
-                </a>
-                <button type="button" class="actionBtn deleteBtn" onclick="confirmDeleteFromSearch('${task.id}')">
-                    <i class="fa-solid fa-trash"></i> Delete
-                </button>
-            </td>
-        `;
-        tableBody.appendChild(tr);
-    });
-}
+  results.forEach(task => {
+    let tr = document.createElement("tr");
 
+    tr.innerHTML = `
+      <td>${task.id}</td>
+      <td>${task.title}</td>
+      <td>${task.createdBy || "Admin"}</td>
+      <td>${task.date || ""}</td>
+      <td>
+        <span class="${getPriorityClass(task.priority)}">
+          ${task.priority}
+        </span>
+      </td>
+      <td>
+        <span class="${getStatusClass(task.status)}">
+          ${task.status}
+        </span>
+      </td>
+      <td>
+        <a href="edit-task.html?id=${task.id}">Edit</a>
+      </td>
+    `;
 
-function confirmDeleteFromSearch(taskId) {
-    const isConfirmed = confirm(`Are you sure you want to delete task ${taskId}?`);
-    
-    if (isConfirmed) {
-        let tasks = getTasks();
-        let updatedTasks = tasks.filter(task => task.id !== taskId);
-        saveTasks(updatedTasks);
-        
-        performSearch();
-    }
+    tableBody.appendChild(tr);
+  });
 }
