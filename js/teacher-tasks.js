@@ -1,21 +1,66 @@
-const API_URL = "http://127.0.0.1:8000/api";
+document.addEventListener("DOMContentLoaded", function () {
+  displayTeacherTasks("all");
 
-async function getTasks() {
-  const res = await fetch(`${API_URL}/tasks/`);
-  return await res.json();
-}
+  const priorityFilter = document.getElementById("priority-filter");
+  if (priorityFilter) {
+    priorityFilter.addEventListener("change", function (e) {
+      displayTeacherTasks(e.target.value);
+    });
+  }
+});
 
-async function deleteTask(id) {
-  await fetch(`${API_URL}/tasks/${id}/`, {
-    method: "DELETE",
+function displayTeacherTasks(filter = "all") {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) return;
+
+  const allTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  let myTasks = allTasks.filter(
+    (task) =>
+      task.assignedToId === currentUser.id && task.status !== "Completed",
+  );
+
+  if (filter !== "all") {
+    myTasks = myTasks.filter(
+      (task) => task.priority.toLowerCase() === filter.toLowerCase(),
+    );
+  }
+
+  const tableBody = document.getElementById("teacherTasksBody");
+  if (!tableBody) return;
+
+  tableBody.innerHTML = "";
+
+  if (myTasks.length === 0) {
+    tableBody.innerHTML = `<tr><td colspan="7" class="centered" style="padding: 30px; color: #64748b; font-size: 16px;">No tasks found.</td></tr>`;
+    return;
+  }
+
+  myTasks.forEach((task) => {
+    let tr = document.createElement("tr");
+
+    const priorityClass = getPriorityClass(task.priority);
+    const statusClass = getStatusClass(task.status);
+
+    tr.innerHTML = `
+            <td class="centered">${task.id}</td>
+            <td>${task.title}</td>
+            <td>${task.desc}</td>
+            <td>${task.createdBy}</td>
+            <td class="centered">
+                <span class="priorityBadge ${priorityClass}">${task.priority}</span>
+            </td>
+            <td class="centered">
+                <span class="statusBadge ${statusClass}">${task.status}</span>
+            </td>
+            <td class="centered">
+                <a href="task-details.html?id=${task.id}" class="actionBtn">View Details</a>
+            </td>
+        `;
+    tableBody.appendChild(tr);
   });
 }
 
-async function updateTaskToCompleted(id) {
-  await fetch(`${API_URL}/tasks/${id}/complete/`, {
-    method: "POST",
-  });
-}function getPriorityClass(priority) {
+function getPriorityClass(priority) {
   if (!priority) return "";
   const p = priority.toLowerCase();
   if (p === "high") return "highPriority";
@@ -33,80 +78,27 @@ function getStatusClass(status) {
   return "statusPending";
 }
 
-async function displayTeacherTasks(filter = "all") {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) return;
-
-  const tableBody = document.getElementById("teacherTasksBody");
-  if (!tableBody) return;
-
-  tableBody.innerHTML = "";
-
-  const allTasks = await getTasks();
-let myTasks = allTasks.filter(
-  (task) =>
-    task.assignedToId === currentUser.id &&
-    task.status?.toLowerCase() !== "completed"
-);
-  if (filter !== "all") {
-    myTasks = myTasks.filter(
-      (task) => task.priority?.toLowerCase() === filter.toLowerCase()
-    );
-  }
-
-  if (myTasks.length === 0) {
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="7" class="centered">No tasks found</td>
-      </tr>`;
-    return;
-  }
-
-  myTasks.forEach((task) => {
-    let tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${task.id}</td>
-      <td>${task.title}</td>
-      <td>${task.desc}</td>
-      <td>${task.createdBy || "Admin"}</td>
-      <td>
-        <span class="priorityBadge ${getPriorityClass(task.priority)}">
-          ${task.priority}
-        </span>
-      </td>
-      <td>
-        <span class="statusBadge ${getStatusClass(task.status)}">
-          ${task.status}
-        </span>
-      </td>
-      <td>
-        <a href="task-details.html?id=${task.id}">
-          View Details
-        </a>
-      </td>
-    `;
-
-    tableBody.appendChild(tr);
-  });
+function getTasks() {
+  let tasks = localStorage.getItem("tasks");
+  return tasks ? JSON.parse(tasks) : [];
 }
 
-async function markAsComplete(taskId) {
-  if (confirm("Mark task as completed?")) {
-    await updateTaskToCompleted(taskId);
-
-    const filter = document.getElementById("priority-filter")?.value || "all";
-    displayTeacherTasks(filter);
-  }
+function saveTasks(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  displayTeacherTasks("all");
+function markAsComplete(taskId) {
+  let tasks = getTasks();
+  let taskIndex = tasks.findIndex((t) => t.id === taskId);
 
-  const priorityFilter = document.getElementById("priority-filter");
-  if (priorityFilter) {
-    priorityFilter.addEventListener("change", function (e) {
-      displayTeacherTasks(e.target.value);
-    });
+  if (taskIndex !== -1) {
+    if (confirm("Are you sure you want to mark this task as Completed?")) {
+      tasks[taskIndex].status = "Completed";
+      saveTasks(tasks);
+
+      const priorityFilter = document.getElementById("priority-filter");
+      const currentFilter = priorityFilter ? priorityFilter.value : "all";
+      displayTeacherTasks(currentFilter);
+    }
   }
-});
+}

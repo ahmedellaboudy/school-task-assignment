@@ -1,90 +1,119 @@
-const API_URL = "http://127.0.0.1:8000/api";
-
+const tableBody = document.getElementById("tasksTableBody");
 const taskForm = document.querySelector(".taskForm");
 const urlParams = new URLSearchParams(window.location.search);
 const editId = urlParams.get("id");
 
-// GET TASKS
-async function getTasks() {
-  const res = await fetch(`${API_URL}/tasks/`);
-  return await res.json();
+function getTasks() {
+  let tasks = localStorage.getItem("tasks");
+  if (tasks) {
+    return JSON.parse(tasks);
+  } else {
+    return [];
+  }
 }
 
-// CREATE TASK
-async function createTask(task) {
-  return await fetch(`${API_URL}/tasks/create/`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(task)
-  });
-}
-// UPDATE TASK (التعديل)
-async function updateTask(id, task) {
-  return await fetch(`${API_URL}/tasks/${id}/update/`, { // تأكدي من وجود هذا المسار في Django
-    method: "PUT", // أو POST حسب تعريفك في الـ Views
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(task)
-  });
+function saveTasks(tasks) {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-// LOAD DATA FOR EDIT
-document.addEventListener("DOMContentLoaded", async () => {
+if (tableBody) {
+  function displayTasks() {
+    tableBody.innerHTML = "";
+    let tasks = getTasks();
+
+    for (let i = 0; i < tasks.length; i++) {
+      let task = tasks[i];
+      let tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td>${task.id}</td>
+        <td>${task.title}</td>
+        <td>${task.desc}</td>
+        <td>${task.teacher}</td>
+        <td>${task.date}</td>
+        <td><span>${task.priority}</span></td>
+        <td><span>${task.status}</span></td>
+        <td>
+          <a href="edit-task.html?id=${task.id}" class="actionBtn editBtn">Edit</a>
+          <button type="button" class="actionBtn deleteBtn" onclick="deleteTask(${i})">Delete</button>
+        </td>
+      `;
+      tableBody.appendChild(tr);
+    }
+  }
+
+  displayTasks();
+}
+
+if (taskForm) {
   if (editId) {
-    const tasks = await getTasks();
-    const task = tasks.find(t => t.id == editId);
-
-    if (task) {
-      document.getElementById("taskId").value = task.id;
-      document.getElementById("createdBy").value = task.createdBy;
-      document.getElementById("priority").value = task.priority;
-      document.getElementById("title").value = task.title;
-      document.getElementById("subject").value = task.subject || "";
-      document.getElementById("deadline").value = task.date;
-      document.getElementById("teacher").value = task.assignedToId;
-      document.getElementById("desc").value = task.desc;
+    let tasks = getTasks();
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].id === editId) {
+        document.getElementById("taskId").value = tasks[i].id;
+        document.getElementById("createdBy").value = tasks[i].createdBy;
+        document.getElementById("priority").value = tasks[i].priority;
+        document.getElementById("title").value = tasks[i].title;
+        document.getElementById("subject").value = tasks[i].subject;
+        document.getElementById("deadline").value = tasks[i].date;
+        document.getElementById("teacher").value = tasks[i].teacher;
+        document.getElementById("desc").value = tasks[i].desc;
+      }
     }
   }
-});
 
-taskForm?.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  taskForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    let tasks = getTasks();
 
-  const taskData = {
-    title: document.getElementById("title").value,
-    desc: document.getElementById("desc").value,
-    priority: document.getElementById("priority").value,
-    assignedToId: Number(document.getElementById("teacher").value),
-    createdBy: document.getElementById("createdBy").value,
-    date: document.getElementById("deadline").value,
-    status: "pending"
-  };
+    const taskIdInput = document.getElementById("taskId").value.trim();
+    const teacherNameInput = document.getElementById("teacher").value.trim();
+    const allUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-  try {
-    let res;
+    const teacherObject = allUsers.find(
+      (u) => u.username === teacherNameInput && u.role === "teacher",
+    );
+
+    if (!teacherObject) {
+      alert(
+        "Teacher name not found! Please make sure the name matches a registered teacher.",
+      );
+      return;
+    }
+
+    if (!editId) {
+      const isDuplicate = tasks.some((task) => task.id === taskIdInput);
+      if (isDuplicate) {
+        alert("This ID already exists. Please use a unique ID.");
+        return;
+      }
+    }
+
+    let taskData = {
+      id: taskIdInput,
+      createdBy: document.getElementById("createdBy").value,
+      title: document.getElementById("title").value,
+      subject: document.getElementById("subject").value,
+      desc: document.getElementById("desc").value,
+      teacher: teacherNameInput,
+      assignedToId: teacherObject.id,
+      date: document.getElementById("deadline").value,
+      priority: document.getElementById("priority").value,
+      status: "Pending",
+    };
+
     if (editId) {
-      res = await fetch(`${API_URL}/tasks/${editId}/update/`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(taskData)
-      });
+      for (let i = 0; i < tasks.length; i++) {
+        if (tasks[i].id === editId) {
+          taskData.status = tasks[i].status;
+          tasks[i] = taskData;
+        }
+      }
     } else {
-      res = await fetch(`${API_URL}/tasks/create/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(taskData)
-      });
+      tasks.push(taskData);
     }
 
-    if (res.ok) {
-      window.location.href = "admin-tasks.html";
-    } else {
-      alert("Error saving task!");
-    }
-  } catch (error) {
-    console.error("Fetch error:", error);
-  }
-});
+    saveTasks(tasks);
+    window.location.href = "admin-tasks.html";
+  });
+}
