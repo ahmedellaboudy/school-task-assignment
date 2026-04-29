@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 tasks[taskIndex].status = "Completed";
                 
                 localStorage.setItem("tasks", JSON.stringify(tasks));
-                
                
                 completeBtn.innerHTML = `<i class="fa-solid fa-check-double"></i> Task Completed`;
                 completeBtn.disabled = true;
