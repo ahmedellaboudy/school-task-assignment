@@ -1,0 +1,64 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/admin-dashboard.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+  </head>
+
+  <body>
+    <div class="welcome-banner">
+      <h1>Welcome Back, <span id="user-name">{{ request.user.username }}</span> 👋</h1>
+    </div>
+
+    <main>
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon-wrapper">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <h2>Add New Task</h2>
+          </div>
+          <p class="card-desc">
+            Create and assign new tasks to teachers with detailed information,
+            priorities, and deadlines.
+          </p>
+          <a href="{% url 'add_task' %}" class="card-link">
+            Get Started <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="card-icon-wrapper">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <h2>View My Tasks ({{ total_count }})</h2>
+          </div>
+          <p class="card-desc">
+            Monitor all tasks you've created, track their status, and manage
+            assignments efficiently. Completed: {{ completed_count }} | Pending: {{ pending_count }}
+          </p>
+          <a href="{% url 'admin_tasks' %}" class="card-link">
+            View All <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 School Task System.</p>
+    </footer>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/admin-tasks.js' %}"></script>
+  </body>
+</html>

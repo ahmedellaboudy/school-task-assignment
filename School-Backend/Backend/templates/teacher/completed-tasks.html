@@ -1,0 +1,82 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Completed Tasks | SchoolTask</title>
+
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/completed-tasks.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <main class="mainContainer dashboardContainer">
+      <header class="dashboardHeader completedHeader">
+        <div class="headerText">
+          <h1 class="pageTitle completedTitle">
+            Completed Tasks
+            <i class="fa-solid fa-square-check completedIcon"></i>
+          </h1>
+        </div>
+
+        <div class="filterGroup">
+          <label for="priority-filter" class="filterLabel">Filter by Priority:</label>
+          <form method="GET" action="{% url 'completed_tasks' %}" style="display: inline-block;">
+              <select name="priority-filter" id="priority-filter" class="filterSelect" onchange="this.form.submit()">
+                <option value="all" {% if current_filter == 'all' %}selected{% endif %}>All</option>
+                <option value="high" {% if current_filter == 'high' %}selected{% endif %}>High</option>
+                <option value="medium" {% if current_filter == 'medium' %}selected{% endif %}>Medium</option>
+                <option value="low" {% if current_filter == 'low' %}selected{% endif %}>Low</option>
+              </select>
+          </form>
+        </div>
+      </header>
+
+      <section class="tableContainer">
+        <table class="tasksTable">
+          <thead>
+            <tr>
+              <th class="centered">ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>From</th>
+              <th class="centered">Priority</th>
+              <th class="centered">Status</th>
+              <th class="centered">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody id="completedTasksBody">
+            {% for task in tasks %}
+            <tr class="completedRow">
+              <td class="taskID centered">{{ task.task_id }}</td>
+              <td class="taskTitleText" style="font-weight: 600;">{{ task.title }}</td>
+              <td class="taskDesc" style="color: #94a3b8;">{{ task.description|truncatewords:5 }}</td>
+              <td class="teacherName">{{ task.created_by.username }}</td>
+              <td class="centered">{{ task.get_priority_display }}</td>
+              <td class="centered">
+                  <span style="color: rgba(70, 186, 70, 0.813); font-weight: bold;">Completed</span>
+              </td>
+              <td class="centered actionGroup">
+                  <a href="{% url 'task_details' task.id %}" class="actionBtn editBtn" style="color: #1e293b; background: transparent; border: none;">
+                      <i class="fa-solid fa-eye"></i> View Details
+                  </a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="7" class="centered" style="padding: 30px; color: #64748b; font-size: 16px;">No completed tasks found. Keep up the good work!</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+  </body>
+</html>
