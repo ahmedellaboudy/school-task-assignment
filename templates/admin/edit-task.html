@@ -1,0 +1,124 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Task</title>
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/add-and-edit-Task.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <main class="mainContainer">
+      <a href="{% url 'admin_tasks' %}" class="backLink">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+      </a>
+
+      <h1 class="pageTitle">Edit Task</h1>
+
+      <form method="POST" action="{% url 'edit_task' task.id %}" class="taskForm">
+        {% csrf_token %}
+        <fieldset class="formSection">
+          <legend>1. Basic Information</legend>
+
+          <div class="inputGroup">
+            <label for="taskId">Task ID</label>
+            <input
+              type="text"
+              id="taskId"
+              name="taskId"
+              value="{{ task.task_id }}"
+              readonly
+            />
+          </div>
+
+          <div class="inputGroup">
+            <label for="createdBy">Created By</label>
+            <input
+              type="text"
+              id="createdBy"
+              name="createdBy"
+              value="{{ task.created_by.username }}"
+              readonly
+            />
+          </div>
+
+          <div class="inputGroup">
+            <label for="priority">Priority</label>
+            <select id="priority" name="taskPriority" required>
+              <option value="high" {% if task.priority == 'high' %}selected{% endif %}>High</option>
+              <option value="medium" {% if task.priority == 'medium' %}selected{% endif %}>Medium</option>
+              <option value="low" {% if task.priority == 'low' %}selected{% endif %}>Low</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset class="formSection">
+          <legend>2. Task Details</legend>
+
+          <div class="inputGroup">
+            <label for="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              name="taskTitle"
+              value="{{ task.title }}"
+              required
+            />
+          </div>
+
+          <div class="inputGroup">
+            <label for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              value="{{ task.subject }}"
+              required
+            />
+          </div>
+
+          <div class="inputGroup">
+            <label for="deadline">Due Date</label>
+            <input type="date" id="deadline" name="deadlineDate" value="{{ task.deadline|date:'Y-m-d' }}" required />
+          </div>
+
+          <div class="inputGroup">
+            <label for="teacher">Teacher Name</label>
+            <select id="teacher" name="teacherName" required>
+              {% for teacher in teachers %}
+                <option value="{{ teacher.id }}" {% if task.assigned_to.id == teacher.id %}selected{% endif %}>
+                  {{ teacher.username }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="inputGroup">
+            <label for="desc">Description</label>
+            <textarea
+              id="desc"
+              name="taskDescription"
+              rows="5"
+              required
+            >{{ task.description }}</textarea>
+          </div>
+        </fieldset>
+
+        <div class="buttonGroup">
+          <button type="button" class="btnCancel" onclick="window.history.back()">
+            Cancel
+          </button>
+          <button type="submit" class="btnSubmit">Update Task</button>
+        </div>
+      </form>
+    </main>
+
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/add-edit-Task.js' %}"></script>
+  </body>
+</html>

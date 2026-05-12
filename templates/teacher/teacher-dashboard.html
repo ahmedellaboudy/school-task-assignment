@@ -1,0 +1,73 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/teacher-dashboard.css' %}" />
+  </head>
+  <body>
+    <main>
+      <div class="welcomeContainer">
+        <h2 id="welcomeMsg">Welcome {{ request.user.username }}!</h2>
+      </div>
+
+      <div class="hero">
+        <div class="cardContainer">
+          <div class="taskTitleContainer">
+            <div class="iconContainer1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#c0ac59" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path>
+              </svg>
+            </div>
+            <h2>My Tasks ({{ pending_count }})</h2>
+          </div>
+          <div class="itemDesciption">
+            <h4>View all tasks assigned to you with detailed information and status tracking.</h4>
+          </div>
+          <a href="{% url 'teacher_tasks' %}">
+            <div class="viewAllContainer">
+              <h4>View All</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="viewAllArrow">
+                <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <div class="cardContainer">
+          <div class="taskTitleContainer">
+            <div class="iconContainer2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#4fc17e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.801 10A10 10 0 1 1 17 3.335"></path><path d="m9 11 3 3L22 4"></path>
+              </svg>
+            </div>
+            <h2>Completed Tasks ({{ completed_count }})</h2>
+          </div>
+          <div class="itemDesciption">
+            <h4>Review all your completed tasks and track your achievement history.</h4>
+          </div>
+          <a href="{% url 'completed_tasks' %}">
+            <div class="viewAllContainer">
+              <h4>View History</h4>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="viewAllArrow">
+                <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2026 School Task System. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/navbar.js' %}"></script>
+  </body>
+</html>
