@@ -112,7 +112,7 @@ def admin_search(request):
         return redirect('login_page')
         
     query = request.GET.get('q', '').strip()
-    tasks = []  # start empty — only search when query is present
+    tasks = []  
     
     if query:
         tasks = Task.objects.filter(
